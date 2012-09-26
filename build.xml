@@ -1,0 +1,502 @@
+<?xml version="1.0"?>
+<!-- ====================================================================== 
+     ant build file
+     ====================================================================== -->
+<project name="PhenoscapeBuilder" default="build-all" basedir=".">
+	<description>Phenoscape build for data loading, reasoning, and indexing</description>
+	<tstamp>
+		<format property="NOW" pattern="yyyy-MM-dd_HH:mm:ss" />
+	</tstamp>
+	<taskdef name="urlencode" classname="net.sf.antcontrib.property.URLEncodeTask">
+		<classpath>
+			<pathelement location="lib/ant-contrib-1.0b3.jar" />
+		</classpath>
+	</taskdef>
+	<taskdef name="if" classname="net.sf.antcontrib.logic.IfTask">
+		<classpath>
+			<pathelement location="lib/ant-contrib-1.0b3.jar" />
+		</classpath>
+	</taskdef>
+	<taskdef name="for" classname="net.sf.antcontrib.logic.ForTask">
+		<classpath>
+			<pathelement location="lib/ant-contrib-1.0b3.jar" />
+		</classpath>
+	</taskdef>
+	<taskdef name="checkimports" classname="org.phenoscape.owl.CheckImportsTask">
+		<classpath>
+			<pathelement location="lib/phenoscape-owl-1.0-SNAPSHOT.jar" />
+			<pathelement location="lib/scala-library-2.9.1.jar" />
+			<pathelement location="lib/owlapi-3.2.4.jar" />
+		</classpath>
+	</taskdef>
+	<property name="build_date" value="${NOW}" />
+	<property name="avoid.downloads" value="true" />
+	<property name="staging" value="staging" />
+	<property name="nexml" value="${staging}/nexml" />
+	<property name="nexml-repo" value="https://github.com/phenoscape/phenoscape-data/trunk/" />
+	<property name="ontology.downloads" value="${staging}/downloads" />
+	<property name="kb" value="${staging}/kb/kb" />
+	<property name="kb-closure" value="${staging}/kb/closure" />
+	<property name="ro" value="http://purl.obolibrary.org/obo/ro.owl" />
+	<property name="iao-metadata" value="http://purl.obolibrary.org/obo/iao/ontology-metadata.owl" />
+	<property name="tao" value="http://purl.obolibrary.org/obo/tao.owl" />
+	<property name="go" value="http://purl.obolibrary.org/obo/go.owl" />
+	<property name="pato" value="http://purl.obolibrary.org/obo/pato.owl" />
+	<property name="bspo" value="http://purl.obolibrary.org/obo/bspo.owl" />
+	<property name="uberon-merged" value="http://purl.obolibrary.org/obo/uberon/merged.owl" />
+	<property name="phenoscape-ext" value="http://purl.obolibrary.org/obo/uberon/phenoscape-ext.owl" />
+	<property name="phenoscape-tbox" value="http://purl.obolibrary.org/obo/phenoscape/tbox.owl" />
+	<urlencode property="ro.encoded" value="${ro}" />
+	<urlencode property="iao-metadata.encoded" value="${iao-metadata}" />
+	<urlencode property="tao.encoded" value="${tao}" />
+	<urlencode property="go.encoded" value="${go}" />
+	<urlencode property="pato.encoded" value="${pato}" />
+	<urlencode property="bspo.encoded" value="${bspo}" />
+	<urlencode property="uberon-merged.encoded" value="${uberon-merged}" />
+	<urlencode property="phenoscape-ext.encoded" value="${phenoscape-ext}" />
+	<urlencode property="phenoscape-tbox.encoded" value="${phenoscape-tbox}" />
+	<urlencode property="partof.uberon-merged.encoded" value="http://purl.obolibrary.org/obo/BFO_0000050_some_http://purl.obolibrary.org/obo/uberon/merged.owl" />
+	<urlencode property="partof.phenoscape-ext.encoded" value="http://purl.obolibrary.org/obo/BFO_0000050_some_http://purl.obolibrary.org/obo/uberon/phenoscape-ext.owl" />
+	<urlencode property="partof.tao.encoded" value="http://purl.obolibrary.org/obo/BFO_0000050_some_http://purl.obolibrary.org/obo/tao.owl" />
+	<urlencode property="partof.go.encoded" value="http://purl.obolibrary.org/obo/BFO_0000050_some_http://purl.obolibrary.org/obo/go.owl" />
+	<urlencode property="bearerof.pato.encoded" value="http://purl.obolibrary.org/obo/BFO_0000053_some_http://purl.obolibrary.org/obo/pato.owl" />
+	<urlencode property="absent.tao.encoded" value="http://phenoscape.org/not_has_part/http://purl.obolibrary.org/obo/tao.owl" />
+	<urlencode property="absent.phenoscape-ext.encoded" value="http://phenoscape.org/not_has_part/http://purl.obolibrary.org/obo/uberon/phenoscape-ext.owl" />
+	<urlencode property="absent.uberon-merged.encoded" value="http://phenoscape.org/not_has_part/http://purl.obolibrary.org/obo/uberon/merged.owl" />
+	<urlencode property="developsfrom.tao.encoded" value="http://purl.obolibrary.org/obo/tao.owl/develops_from_rules.owl" />
+	<urlencode property="developsfrom.phenoscape-ext.encoded" value="http://purl.obolibrary.org/obo/uberon/phenoscape-ext.owl/develops_from_rules.owl" />
+	<urlencode property="developsfrom.uberon-merged.encoded" value="http://purl.obolibrary.org/obo/uberon/merged.owl/develops_from_rules.owl" />
+	<urlencode property="absent.go.encoded" value="http://phenoscape.org/not_has_part/http://purl.obolibrary.org/obo/go.owl" />
+
+
+	<path id="jarsclasspath">
+		<fileset dir="lib">
+			<include name="*" />
+		</fileset>
+	</path>
+
+	<!-- The init target makes sure that the prerequisite directories exist. -->
+	<target name="init">
+		<mkdir dir="${staging}" />
+		<mkdir dir="${ontology.downloads}" />
+		<mkdir dir="${kb}" />
+	</target>
+
+	<target name="download-ro" depends="init, download-iao-metadata">
+		<if>
+			<available file="${ontology.downloads}/${ro.encoded}" />
+			<then>
+				<checksum file="${ontology.downloads}/${ro.encoded}" property="ro.checksum" />
+			</then>
+			<else>
+				<property name="ro.checksum" value="0" />
+			</else>
+		</if>
+		<get src="http://dl.dropbox.com/u/6704325/ro-slim.owl" dest="${ontology.downloads}/${ro.encoded}" usetimestamp="true" skipexisting="${avoid.downloads}" />
+		<checksum file="${ontology.downloads}/${ro.encoded}" property="${ro.checksum}" verifyproperty="ro.matches" />
+		<condition property="${ro}.modified">
+			<isfalse value="${ro.matches}" />
+		</condition>
+		<copy file="${ontology.downloads}/${ro.encoded}" tofile="${kb}/${ro.encoded}" preservelastmodified="true" />
+	</target>
+
+	<target name="download-iao-metadata" depends="init">
+		<if>
+			<available file="${ontology.downloads}/${iao-metadata.encoded}" />
+			<then>
+				<checksum file="${ontology.downloads}/${iao-metadata.encoded}" property="iao-metadata.checksum" />
+			</then>
+			<else>
+				<property name="iao-metadata.checksum" value="0" />
+			</else>
+		</if>
+		<get src="http://purl.obolibrary.org/obo/iao/ontology-metadata.owl" dest="${ontology.downloads}/${iao-metadata.encoded}" usetimestamp="true" skipexisting="${avoid.downloads}" />
+		<checksum file="${ontology.downloads}/${iao-metadata.encoded}" property="${iao-metadata.checksum}" verifyproperty="iao-metadata.matches" />
+		<condition property="${iao-metadata}.modified">
+			<isfalse value="${iao-metadata.matches}" />
+		</condition>
+		<copy file="${ontology.downloads}/${iao-metadata.encoded}" tofile="${kb}/${iao-metadata.encoded}" preservelastmodified="true" />
+	</target>
+
+	<target name="download-uberon-merged" depends="init">
+		<if>
+			<available file="${ontology.downloads}/${uberon-merged.encoded}" />
+			<then>
+				<checksum file="${ontology.downloads}/${uberon-merged.encoded}" property="uberon-merged.checksum" />
+			</then>
+			<else>
+				<property name="uberon-merged.checksum" value="0" />
+			</else>
+		</if>
+		<get src="http://purl.obolibrary.org/obo/uberon/merged.owl" dest="${ontology.downloads}/${uberon-merged.encoded}" usetimestamp="true" skipexisting="${avoid.downloads}" />
+		<checksum file="${ontology.downloads}/${uberon-merged.encoded}" property="${uberon-merged.checksum}" verifyproperty="uberon-merged.matches" />
+		<condition property="${uberon-merged}.modified">
+			<isfalse value="${uberon-merged.matches}" />
+		</condition>
+	</target>
+
+	<target name="download-phenoscape-ext" depends="init">
+		<if>
+			<available file="${ontology.downloads}/${phenoscape-ext.encoded}" />
+			<then>
+				<checksum file="${ontology.downloads}/${phenoscape-ext.encoded}" property="phenoscape-ext.checksum" />
+			</then>
+			<else>
+				<property name="phenoscape-ext.checksum" value="0" />
+			</else>
+		</if>
+		<get src="http://phenoscape.svn.sourceforge.net/svnroot/phenoscape/trunk/vocab/edit/phenoscape-ext.owl" dest="${ontology.downloads}/${phenoscape-ext.encoded}" usetimestamp="true" skipexisting="${avoid.downloads}" />
+		<checksum file="${ontology.downloads}/${phenoscape-ext.encoded}" property="${phenoscape-ext.checksum}" verifyproperty="phenoscape-ext.matches" />
+		<condition property="${phenoscape-ext}.modified">
+			<isfalse value="${phenoscape-ext.matches}" />
+		</condition>
+	</target>
+
+	<target name="download-tao" depends="init">
+		<if>
+			<available file="${ontology.downloads}/${tao.encoded}" />
+			<then>
+				<checksum file="${ontology.downloads}/${tao.encoded}" property="tao.checksum" />
+			</then>
+			<else>
+				<property name="tao.checksum" value="0" />
+			</else>
+		</if>
+		<get src="http://purl.obolibrary.org/obo/tao.owl" dest="${ontology.downloads}/${tao.encoded}" usetimestamp="true" skipexisting="${avoid.downloads}" />
+		<checksum file="${ontology.downloads}/${tao.encoded}" property="${tao.checksum}" verifyproperty="tao.matches" />
+		<condition property="${tao}.modified">
+			<isfalse value="${tao.matches}" />
+		</condition>
+	</target>
+
+	<target name="download-go" depends="init">
+		<if>
+			<available file="${ontology.downloads}/${go.encoded}" />
+			<then>
+				<checksum file="${ontology.downloads}/${go.encoded}" property="go.checksum" />
+			</then>
+			<else>
+				<property name="go.checksum" value="0" />
+			</else>
+		</if>
+		<get src="http://purl.obolibrary.org/obo/go.owl" dest="${ontology.downloads}/${go.encoded}" usetimestamp="true" skipexisting="${avoid.downloads}" />
+		<checksum file="${ontology.downloads}/${go.encoded}" property="${go.checksum}" verifyproperty="go.matches" />
+		<condition property="${go}.modified">
+			<isfalse value="${go.matches}" />
+		</condition>
+	</target>
+
+	<target name="download-pato" depends="init">
+		<if>
+			<available file="${ontology.downloads}/${pato.encoded}" />
+			<then>
+				<checksum file="${ontology.downloads}/${pato.encoded}" property="pato.checksum" />
+			</then>
+			<else>
+				<property name="pato.checksum" value="0" />
+			</else>
+		</if>
+		<get src="http://purl.obolibrary.org/obo/pato.owl" dest="${ontology.downloads}/${pato.encoded}" usetimestamp="true" skipexisting="${avoid.downloads}" />
+		<checksum file="${ontology.downloads}/${pato.encoded}" property="${pato.checksum}" verifyproperty="pato.matches" />
+		<condition property="${pato}.modified">
+			<isfalse value="${pato.matches}" />
+		</condition>
+	</target>
+
+	<target name="download-bspo" depends="init">
+		<if>
+			<available file="${ontology.downloads}/${bspo.encoded}" />
+			<then>
+				<checksum file="${ontology.downloads}/${bspo.encoded}" property="bspo.checksum" />
+			</then>
+			<else>
+				<property name="bspo.checksum" value="0" />
+			</else>
+		</if>
+		<get src="http://purl.obolibrary.org/obo/bspo.owl" dest="${ontology.downloads}/${bspo.encoded}" usetimestamp="true" skipexisting="${avoid.downloads}" />
+		<checksum file="${ontology.downloads}/${bspo.encoded}" property="${bspo.checksum}" verifyproperty="bspo.matches" />
+		<condition property="${bspo}.modified">
+			<isfalse value="${bspo.matches}" />
+		</condition>
+	</target>
+
+	<target name="download-tto" depends="init">
+		<!-- TTO -->
+	</target>
+
+	<target name="download-ontologies" depends="init, download-ro, download-iao-metadata, download-tao, download-go, download-pato, download-bspo, download-tto">
+		<!-- checkimports task requires adequate Java heap space; set using `export ANT_OPTS="-Xmx2048m"` on command line -->
+		<checkimports folder="${ontology.downloads}" />
+	</target>
+
+	<target name="normalize-tao" depends="download-ontologies" if="${tao}.modified">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${ontology.downloads}/${tao.encoded}" />
+			<arg value="${kb}/${tao.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
+	<target name="normalize-uberon-merged" depends="download-ontologies" if="${uberon-merged}.modified">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${ontology.downloads}/${uberon-merged.encoded}" />
+			<arg value="${kb}/${uberon-merged.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
+	<target name="normalize-phenoscape-ext" depends="download-ontologies" if="${phenoscape-ext}.modified">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${ontology.downloads}/${phenoscape-ext.encoded}" />
+			<arg value="${kb}/${phenoscape-ext.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
+	<target name="materialize-tao" depends="normalize-tao" if="${tao}.modified">
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${kb}/${tao.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
+	<target name="materialize-phenoscape-tbox" depends="normalize-uberon-merged,normalize-phenoscape-ext,normalize-pato,normalize-bspo,generate-partof-uberon-merged,generate-absent-uberon-merged,generate-uberon-merged-develops-from-rules,generate-partof-phenoscape-ext,generate-absent-phenoscape-ext,generate-phenoscape-ext-develops-from-rules,generate-bearerof-pato">
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${kb}/${phenoscape-tbox.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
+	<target name="normalize-go" depends="download-ontologies" if="${go}.modified">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${ontology.downloads}/${go.encoded}" />
+			<arg value="${kb}/${go.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
+	<target name="materialize-go" depends="normalize-go" if="${go}.modified">
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${kb}/${go.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+			<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
+		</java>
+	</target>
+
+	<target name="normalize-pato" depends="download-ontologies" if="${pato}.modified">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${ontology.downloads}/${pato.encoded}" />
+			<arg value="${kb}/${pato.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
+	<target name="materialize-pato" depends="normalize-pato" if="${pato}.modified">
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${kb}/${pato.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
+	<target name="normalize-bspo" depends="download-ontologies" if="${bspo}.modified">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${ontology.downloads}/${bspo.encoded}" />
+			<arg value="${kb}/${bspo.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
+	<target name="materialize-bspo" depends="normalize-bspo" if="${bspo}.modified">
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${kb}/${bspo.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
+	<target name="generate-partof-uberon-merged" depends="normalize-uberon-merged" if="${uberon-merged}.modified">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${kb}/${uberon-merged.encoded}" />
+			<arg value="http://purl.obolibrary.org/obo/BFO_0000050" />
+			<arg value="${kb}/${partof.uberon-merged.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+	
+	<target name="generate-partof-uberon-merged" depends="normalize-uberon-merged" if="${uberon-merged}.modified">
+			<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+				<arg value="${kb}/${uberon-merged.encoded}" />
+				<arg value="http://purl.obolibrary.org/obo/BFO_0000050" />
+				<arg value="${kb}/${partof.uberon-merged.encoded}" />
+				<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+				<sysproperty key="java.library.path" value="lib" />
+			</java>
+		</target>
+
+	<target name="materialize-partof-tao" depends="generate-partof-tao" if="${tao}.modified">
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${kb}/${partof.tao.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
+	<target name="generate-partof-go" depends="normalize-go" if="${go}.modified">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${kb}/${go.encoded}" />
+			<arg value="http://purl.obolibrary.org/obo/BFO_0000050" />
+			<arg value="${kb}/${partof.go.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
+	<target name="materialize-partof-go" depends="generate-partof-go" if="${go}.modified">
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${kb}/${partof.go.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+			<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
+		</java>
+	</target>
+
+	<target name="generate-bearerof-pato" depends="normalize-pato" if="${pato}.modified">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${kb}/${pato.encoded}" />
+			<arg value="http://purl.obolibrary.org/obo/BFO_0000053" />
+			<arg value="${kb}/${bearerof.pato.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
+	<target name="materialize-bearerof-pato" depends="generate-bearerof-pato" if="${pato}.modified">
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${kb}/${bearerof.pato.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
+	<target name="generate-absent-tao" depends="normalize-tao" if="${tao}.modified">
+		<java classname="org.phenoscape.owl.AbsenceClassGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${kb}/${tao.encoded}" />
+			<arg value="${kb}/${absent.tao.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+		</java>
+	</target>
+
+	<target name="generate-absent-go" depends="normalize-go" if="${go}.modified">
+		<java classname="org.phenoscape.owl.AbsenceClassGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${kb}/${go.encoded}" />
+			<arg value="${kb}/${absent.go.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+		</java>
+	</target>
+
+	<target name="materialize-absent-tao" depends="generate-absent-tao" if="${tao}.modified">
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${kb}/${absent.tao.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
+	<!-- if="${go}.modified" -->
+	<target name="materialize-absent-go" depends="generate-absent-go">
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
+			<arg value="${kb}/${absent.go.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+			<sysproperty key="org.phenoscape.owl.reasoner" value="trowl" />
+		</java>
+	</target>
+
+	<target name="generate-tao-develops-from-rules" depends="generate-absent-tao" if="${tao}.modified">
+		<java classname="org.phenoscape.owl.DevelopsFromRuleGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${kb}/${tao.encoded}" />
+			<arg value="${kb}/${developsfrom.tao.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+		</java>
+	</target>
+
+	<target name="materialize-tao-develops-from-rules" depends="generate-tao-develops-from-rules" if="${tao}.modified">
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${kb}/${developsfrom.tao.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+			<sysproperty key="org.phenoscape.owl.reasoner" value="trowl" />
+		</java>
+	</target>
+
+	<target name="materialize-class-hierarchy-closure">
+		<java classname="org.phenoscape.owl.MaterializeSubClassOfClosure" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<arg value="${kb}/${tao.encoded}" />
+			<arg value="${kb}/${go.encoded}" />
+			<arg value="${kb}/${pato.encoded}" />
+			<arg value="${kb}/${bspo.encoded}" />
+			<arg value="${kb}/${partof.tao.encoded}" />
+			<arg value="${kb}/${partof.go.encoded}" />
+			<arg value="${kb}/${bearerof.pato.encoded}" />
+			<arg value="${kb}/${absent.tao.encoded}" />
+			<arg value="${kb}/${developsfrom.tao.encoded}" />
+			<arg value="${kb}/${absent.go.encoded}" />
+			<sysproperty key="org.phenoscape.owl.MaterializeSubClassOfClosure.target" value="${kb-closure}/hierarchy_closure.owl" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
+	<target name="checkout-nexml" depends="init" description="">
+		<exec executable="svn" dir="${staging}" failonerror="true">
+			<arg value="checkout" />
+			<arg value="${nexml-repo}" />
+			<arg value="nexml" />
+		</exec>
+	</target>
+
+	<target name="nexml-to-owl" depends="checkout-nexml">
+		<for param="file" parallel="true" threadCount="5">
+			<path>
+				<fileset dir="${nexml}/phenex-files">
+					<include name="**/*.xml" />
+					<exclude name="**/catalog-v001.xml" />
+				</fileset>
+				<fileset dir="${nexml}/incomplete-files">
+					<include name="**/*.xml" />
+					<exclude name="**/catalog-v001.xml" />
+				</fileset>
+			</path>
+			<sequential>
+				<java classname="org.phenoscape.owl.PhenexToOWL" classpathref="jarsclasspath" fork="true" maxmemory="3g" failonerror="true">
+					<arg value="@{file}" />
+					<arg value="@{file}.owl" />
+				</java>
+				<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="3g" failonerror="true">
+					<arg value="@{file}.owl" />
+					<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+				</java>
+				<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="6g" failonerror="true">
+					<arg value="@{file}.owl" />
+					<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+					<sysproperty key="org.phenoscape.owl.reasoner" value="trowl" />
+					<sysproperty key="entityExpansionLimit" value="9999999" />
+				</java>
+				<copy file="@{file}.owl" todir="${kb}" preservelastmodified="true" />
+			</sequential>
+		</for>
+	</target>
+
+	<target name="build-all" description="" depends="download-ontologies, materialize-tao, materialize-go, materialize-pato, materialize-bspo, materialize-partof-tao, materialize-partof-go, materialize-absent-tao, materialize-tao-develops-from-rules, materialize-absent-go, materialize-bearerof-pato" />
+
+</project>
