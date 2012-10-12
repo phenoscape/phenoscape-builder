@@ -7,6 +7,11 @@
 	<tstamp>
 		<format property="NOW" pattern="yyyy-MM-dd_HH:mm:ss" />
 	</tstamp>
+	<path id="project.classpath">
+		<fileset dir="lib">
+			<include name="*" />
+		</fileset>
+	</path>
 	<taskdef name="urlencode" classname="net.sf.antcontrib.property.URLEncodeTask">
 		<classpath>
 			<pathelement location="lib/ant-contrib-1.0b3.jar" />
@@ -23,11 +28,7 @@
 		</classpath>
 	</taskdef>
 	<taskdef name="checkimports" classname="org.phenoscape.owl.CheckImportsTask">
-		<classpath>
-			<pathelement location="lib/phenoscape-owl-1.0-SNAPSHOT.jar" />
-			<pathelement location="lib/scala-library-2.9.1.jar" />
-			<pathelement location="lib/owlapi-3.2.4.jar" />
-		</classpath>
+		<classpath refid="project.classpath" />
 	</taskdef>
 	<property name="build_date" value="${NOW}" />
 	<property name="avoid.downloads" value="true" />
@@ -49,7 +50,6 @@
 	<property name="phenoscape-tbox" value="http://purl.obolibrary.org/obo/phenoscape/tbox.owl" />
 	<urlencode property="ro.encoded" value="${ro}" />
 	<urlencode property="iao-metadata.encoded" value="${iao-metadata}" />
-	<urlencode property="tao.encoded" value="${tao}" />
 	<urlencode property="go.encoded" value="${go}" />
 	<urlencode property="pato.encoded" value="${pato}" />
 	<urlencode property="bspo.encoded" value="${bspo}" />
@@ -61,16 +61,15 @@
 	<urlencode property="haspart.uberon-merged.encoded" value="http://purl.obolibrary.org/obo/BFO_0000051_some_http://purl.obolibrary.org/obo/uberon/merged.owl" />
 	<urlencode property="partof.phenoscape-ext.encoded" value="http://purl.obolibrary.org/obo/BFO_0000050_some_http://purl.obolibrary.org/obo/uberon/phenoscape-ext.owl" />
 	<urlencode property="haspart.phenoscape-ext.encoded" value="http://purl.obolibrary.org/obo/BFO_0000051_some_http://purl.obolibrary.org/obo/uberon/phenoscape-ext.owl" />
-	<urlencode property="partof.tao.encoded" value="http://purl.obolibrary.org/obo/BFO_0000050_some_http://purl.obolibrary.org/obo/tao.owl" />
 	<urlencode property="partof.go.encoded" value="http://purl.obolibrary.org/obo/BFO_0000050_some_http://purl.obolibrary.org/obo/go.owl" />
+	<urlencode property="haspart.go.encoded" value="http://purl.obolibrary.org/obo/BFO_0000051_some_http://purl.obolibrary.org/obo/go.owl" />
 	<urlencode property="bearerof.pato.encoded" value="http://purl.obolibrary.org/obo/BFO_0000053_some_http://purl.obolibrary.org/obo/pato.owl" />
-	<urlencode property="absent.tao.encoded" value="http://phenoscape.org/not_has_part/http://purl.obolibrary.org/obo/tao.owl" />
 	<urlencode property="absent.phenoscape-ext.encoded" value="http://phenoscape.org/not_has_part/http://purl.obolibrary.org/obo/uberon/phenoscape-ext.owl" />
 	<urlencode property="absent.uberon-merged.encoded" value="http://phenoscape.org/not_has_part/http://purl.obolibrary.org/obo/uberon/merged.owl" />
+	<urlencode property="absent.go.encoded" value="http://phenoscape.org/not_has_part/http://purl.obolibrary.org/obo/go.owl" />
 	<urlencode property="developsfrom.tao.encoded" value="http://purl.obolibrary.org/obo/tao.owl/develops_from_rules.owl" />
 	<urlencode property="developsfrom.phenoscape-ext.encoded" value="http://purl.obolibrary.org/obo/uberon/phenoscape-ext.owl/reverse_develops_from_rules.owl" />
 	<urlencode property="developsfrom.uberon-merged.encoded" value="http://purl.obolibrary.org/obo/uberon/merged.owl/reverse_develops_from_rules.owl" />
-	<urlencode property="absent.go.encoded" value="http://phenoscape.org/not_has_part/http://purl.obolibrary.org/obo/go.owl" />
 	<urlencode property="individuals.vto.encoded" value="http://phenoscape.org/individuals/${vto}" />
 
 
@@ -225,7 +224,7 @@
 		</condition>
 	</target>
 
-	<target name="download-ontologies" depends="init, download-ro, download-iao-metadata, download-uberon-merged, download-phenoscape-ext, download-pato, download-bspo, download-vto">
+	<target name="download-ontologies" depends="init, download-ro, download-iao-metadata, download-uberon-merged, download-phenoscape-ext, download-go, download-pato, download-bspo, download-vto">
 		<!-- checkimports task requires adequate Java heap space; set using `export ANT_OPTS="-Xmx2048m"` on command line -->
 		<copy file="ontologies/phenoscape-tbox.owl" tofile="${kb}/${phenoscape-tbox.encoded}" preservelastmodified="true" />
 		<checkimports folder="${ontology.downloads}" />
@@ -259,7 +258,7 @@
 		</java>
 	</target>
 
-	<target name="materialize-phenoscape-tbox" depends="normalize-uberon-merged,normalize-phenoscape-ext,normalize-pato,normalize-bspo,generate-partof-uberon-merged,generate-haspart-uberon-merged,generate-absent-uberon-merged,generate-uberon-merged-develops-from-rules,generate-partof-phenoscape-ext,generate-haspart-phenoscape-ext,generate-absent-phenoscape-ext,generate-phenoscape-ext-develops-from-rules,generate-bearerof-pato">
+	<target name="materialize-phenoscape-tbox" depends="normalize-uberon-merged,normalize-phenoscape-ext,normalize-pato,normalize-bspo,normalize-go,generate-partof-uberon-merged,generate-partof-go,generate-haspart-uberon-merged,generate-haspart-go,generate-absent-uberon-merged,generate-uberon-merged-develops-from-rules,generate-partof-phenoscape-ext,generate-haspart-phenoscape-ext,generate-absent-phenoscape-ext,generate-phenoscape-ext-develops-from-rules,generate-bearerof-pato, generate-absent-go">
 		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
 			<arg value="${kb}/${phenoscape-tbox.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -377,6 +376,16 @@
 			<sysproperty key="java.library.path" value="lib" />
 		</java>
 	</target>
+	
+	<target name="generate-haspart-go" depends="normalize-go">
+			<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+				<arg value="${kb}/${go.encoded}" />
+				<arg value="http://purl.obolibrary.org/obo/BFO_0000051" />
+				<arg value="${kb}/${haspart.go.encoded}" />
+				<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+				<sysproperty key="java.library.path" value="lib" />
+			</java>
+		</target>
 
 	<target name="generate-bearerof-pato" depends="normalize-pato">
 		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
@@ -405,7 +414,7 @@
 	</target>
 
 	<target name="generate-absent-go" depends="normalize-go">
-		<java classname="org.phenoscape.owl.AbsenceClassGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.NegationClassGenerator" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
 			<arg value="${kb}/${go.encoded}" />
 			<arg value="${kb}/${absent.go.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -430,16 +439,7 @@
 
 	<target name="materialize-class-hierarchy-closure">
 		<java classname="org.phenoscape.owl.MaterializeSubClassOfClosure" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
-			<arg value="${kb}/${tao.encoded}" />
-			<arg value="${kb}/${go.encoded}" />
-			<arg value="${kb}/${pato.encoded}" />
-			<arg value="${kb}/${bspo.encoded}" />
-			<arg value="${kb}/${partof.tao.encoded}" />
-			<arg value="${kb}/${partof.go.encoded}" />
-			<arg value="${kb}/${bearerof.pato.encoded}" />
-			<arg value="${kb}/${absent.tao.encoded}" />
-			<arg value="${kb}/${developsfrom.tao.encoded}" />
-			<arg value="${kb}/${absent.go.encoded}" />
+			<arg value="${kb}/${phenoscape-tbox.encoded}" />
 			<sysproperty key="org.phenoscape.owl.MaterializeSubClassOfClosure.target" value="${kb-closure}/hierarchy_closure.owl" />
 			<sysproperty key="java.library.path" value="lib" />
 		</java>
@@ -485,6 +485,6 @@
 		</for>
 	</target>
 
-	<target name="build-all" description="" depends="download-ontologies,materialize-phenoscape-tbox,assert-negation-hierarchy-phenoscape-tbox,generate-individuals-vto" />
+	<target name="build-all" description="" depends="download-ontologies,materialize-phenoscape-tbox,assert-negation-hierarchy-phenoscape-tbox,generate-individuals-vto,materialize-class-hierarchy-closure,materialize-individuals-vto" />
 
 </project>
