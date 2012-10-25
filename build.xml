@@ -264,6 +264,7 @@
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
 			<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
+			<sysproperty key="log4j.configuration" value="log4j.properties" />
 		</java>
 	</target>
 
@@ -376,16 +377,16 @@
 			<sysproperty key="java.library.path" value="lib" />
 		</java>
 	</target>
-	
+
 	<target name="generate-haspart-go" depends="normalize-go">
-			<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
-				<arg value="${kb}/${go.encoded}" />
-				<arg value="http://purl.obolibrary.org/obo/BFO_0000051" />
-				<arg value="${kb}/${haspart.go.encoded}" />
-				<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
-				<sysproperty key="java.library.path" value="lib" />
-			</java>
-		</target>
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${kb}/${go.encoded}" />
+			<arg value="http://purl.obolibrary.org/obo/BFO_0000051" />
+			<arg value="${kb}/${haspart.go.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
 
 	<target name="generate-bearerof-pato" depends="normalize-pato">
 		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
@@ -453,7 +454,8 @@
 		</exec>
 	</target>
 
-	<target name="nexml-to-owl" depends="checkout-nexml">
+	<!-- depends="checkout-nexml" -->
+	<target name="nexml-to-owl" >
 		<for param="file" parallel="true" threadCount="5">
 			<path>
 				<fileset dir="${nexml}/phenex-files">
