@@ -1,2 +1,6 @@
-staging
-target
+staging/
+target/
+.DS_Store
+.classpath
+.project
+catalog-v001.xml
