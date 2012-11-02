@@ -28,6 +28,10 @@
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051_some_http://purl.obolibrary.org/obo/uberon/phenoscape-ext.owl"/>
 		<owl:imports rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051_some_http://purl.obolibrary.org/obo/go.owl"/>
         <owl:imports rdf:resource="http://purl.obolibrary.org/obo/BFO_0000053_some_http://purl.obolibrary.org/obo/pato.owl"/>
+		<owl:imports rdf:resource="http://vocab.phenoscape.org/involves_some_http://purl.obolibrary.org/obo/uberon/merged.owl"/>
+        <owl:imports rdf:resource="http://vocab.phenoscape.org/involves_some_http://purl.obolibrary.org/obo/uberon/phenoscape-ext.owl"/>
+		<owl:imports rdf:resource="http://vocab.phenoscape.org/involves_some_http://purl.obolibrary.org/obo/go.owl"/>
+        <owl:imports rdf:resource="http://vocab.phenoscape.org/involves_some_http://purl.obolibrary.org/obo/pato.owl"/>
         <owl:imports rdf:resource="http://phenoscape.org/not_has_part/http://purl.obolibrary.org/obo/uberon/merged.owl"/>
         <owl:imports rdf:resource="http://phenoscape.org/not_has_part/http://purl.obolibrary.org/obo/uberon/phenoscape-ext.owl"/>
         <owl:imports rdf:resource="http://phenoscape.org/not_has_part/http://purl.obolibrary.org/obo/go.owl"/>
