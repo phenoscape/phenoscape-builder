@@ -91,24 +91,6 @@
 		<mkdir dir="${kb}" />
 	</target>
 
-	<target name="download-ro" depends="init, download-iao-metadata">
-		<if>
-			<available file="${ontology.downloads}/${ro.encoded}" />
-			<then>
-				<checksum file="${ontology.downloads}/${ro.encoded}" property="ro.checksum" />
-			</then>
-			<else>
-				<property name="ro.checksum" value="0" />
-			</else>
-		</if>
-		<get src="http://dl.dropbox.com/u/6704325/ro-slim.owl" dest="${ontology.downloads}/${ro.encoded}" usetimestamp="true" skipexisting="${avoid.downloads}" />
-		<checksum file="${ontology.downloads}/${ro.encoded}" property="${ro.checksum}" verifyproperty="ro.matches" />
-		<condition property="${ro}.modified">
-			<isfalse value="${ro.matches}" />
-		</condition>
-		<copy file="${ontology.downloads}/${ro.encoded}" tofile="${kb}/${ro.encoded}" preservelastmodified="true" />
-	</target>
-
 	<target name="download-iao-metadata" depends="init">
 		<if>
 			<available file="${ontology.downloads}/${iao-metadata.encoded}" />
@@ -229,8 +211,9 @@
 		</condition>
 	</target>
 
-	<target name="download-ontologies" depends="init, download-ro, download-iao-metadata, download-uberon-merged, download-phenoscape-ext, download-go, download-pato, download-bspo, download-vto">
+	<target name="download-ontologies" depends="init,download-iao-metadata,download-uberon-merged,download-phenoscape-ext,download-go,download-pato,download-bspo,download-vto">
 		<!-- checkimports task requires adequate Java heap space; set using `export ANT_OPTS="-Xmx2048m"` on command line -->
+		<copy file="ontologies/ro-slim.owl" tofile="${kb}/${ro.encoded}" preservelastmodified="true" />
 		<copy file="ontologies/phenoscape-tbox.owl" tofile="${kb}/${phenoscape-tbox.encoded}" preservelastmodified="true" />
 		<checkimports folder="${ontology.downloads}" />
 	</target>
