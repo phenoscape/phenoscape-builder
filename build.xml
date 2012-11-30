@@ -35,8 +35,9 @@
 	<property name="avoid.downloads" value="true" />
 	<property name="staging" value="staging" />
 	<property name="nexml" value="${staging}/nexml" />
-	<property name="nexml-repo" value="https://github.com/phenoscape/phenoscape-data/trunk/" />
-	<property name="ontology.downloads" value="${staging}/downloads" />
+	<property name="nexml-repo" value="https://github.com/phenoscape/phenoscape-data/trunk/Curation Files" />
+	<property name="ontology.downloads" value="${staging}/downloads/ontologies" />
+	<property name="zfin.downloads" value="${staging}/downloads/ontologies" />
 	<property name="kb" value="${staging}/kb/kb" />
 	<property name="kb-closure" value="${staging}/kb/closure" />
 	<property name="ro" value="http://purl.obolibrary.org/obo/ro.owl" />
@@ -212,10 +213,8 @@
 	</target>
 
 	<target name="download-ontologies" depends="init,download-iao-metadata,download-uberon-merged,download-phenoscape-ext,download-go,download-pato,download-bspo,download-vto">
-		<!-- checkimports task requires adequate Java heap space; set using `export ANT_OPTS="-Xmx2048m"` on command line -->
 		<copy file="ontologies/ro-slim.owl" tofile="${kb}/${ro.encoded}" preservelastmodified="true" />
 		<copy file="ontologies/phenoscape-tbox.owl" tofile="${kb}/${phenoscape-tbox.encoded}" preservelastmodified="true" />
-		<checkimports folder="${ontology.downloads}" />
 	</target>
 
 	<target name="normalize-vto" depends="download-ontologies">
@@ -486,7 +485,7 @@
 	<target name="nexml-to-owl">
 		<for param="file" parallel="true" threadCount="5">
 			<path>
-				<fileset dir="${nexml}/phenex-files">
+				<fileset dir="${nexml}/completed-phenex-files">
 					<include name="**/*.xml" />
 					<exclude name="**/catalog-v001.xml" />
 				</fileset>
@@ -554,6 +553,53 @@
 				</exec>
 			</sequential>
 		</for>
+	</target>
+
+	<target name="zfin-expression-to-owl" depends="download-ontologies">
+		<get src="http://zfin.org/downloads/wildtype-expression.txt" dest="${zfin.downloads}/zfin-expression.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
+		<java classname="org.phenoscape.owl.mod.zfin.ZFINExpressionToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<arg value="${zfin.downloads}/zfin-expression.txt" />
+			<arg value="${kb}/zfin-expression.owl" />
+		</java>
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<arg value="${kb}/zfin-expression.owl" />
+			<arg value="${kb}/zfin-expression.owl" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<arg value="${kb}/zfin-expression.owl" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+			<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
+			<sysproperty key="log4j.configuration" value="log4j.properties" />
+		</java>
+	</target>
+
+	<target name="annotation-report">
+		<fileset dir="${nexml}/completed-phenex-files" id="input_files">
+			<include name="**/*.xml" />
+			<exclude name="**/catalog-v001.xml" />
+		</fileset>
+		<pathconvert property="report.file.args" refid="input_files" pathsep="' '" />
+		<java classname="org.phenoscape.owl.report.AnnotationReport" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<sysproperty key="entityExpansionLimit" value="9999999" />
+			<sysproperty key="org.phenoscape.owl.report.AnnotationReport.ontology" value="ontologies/phenoscape-sources-merged.owl" />
+			<sysproperty key="org.phenoscape.owl.report.AnnotationReport.output" value="report.txt" />
+			<arg line="'${report.file.args}'" />
+		</java>
+	</target>
+
+	<target name="annotation-status">
+		<fileset dir="${nexml}/fin_limb-incomplete-files/Sereno Files" id="input_files">
+			<include name="**/*.xml" />
+			<exclude name="**/catalog-v001.xml" />
+		</fileset>
+		<pathconvert property="report.file.args" refid="input_files" pathsep="' '" />
+		<java classname="org.phenoscape.owl.report.AnnotationStatus" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<sysproperty key="entityExpansionLimit" value="9999999" />
+			<arg line="'${report.file.args}'" />
+		</java>
 	</target>
 
 	<target name="build-all" description="" depends="download-ontologies,materialize-phenoscape-tbox,assert-negation-hierarchy-phenoscape-tbox,generate-individuals-vto,materialize-class-hierarchy-closure,materialize-individuals-vto" />
