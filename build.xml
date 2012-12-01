@@ -37,7 +37,8 @@
 	<property name="nexml" value="${staging}/nexml" />
 	<property name="nexml-repo" value="https://github.com/phenoscape/phenoscape-data/trunk/Curation Files" />
 	<property name="ontology.downloads" value="${staging}/downloads/ontologies" />
-	<property name="zfin.downloads" value="${staging}/downloads/ontologies" />
+	<property name="zfin.downloads" value="${staging}/downloads/zfin" />
+	<property name="mgi.downloads" value="${staging}/downloads/mgi" />
 	<property name="kb" value="${staging}/kb/kb" />
 	<property name="kb-closure" value="${staging}/kb/closure" />
 	<property name="ro" value="http://purl.obolibrary.org/obo/ro.owl" />
@@ -89,6 +90,8 @@
 	<target name="init">
 		<mkdir dir="${staging}" />
 		<mkdir dir="${ontology.downloads}" />
+		<mkdir dir="${zfin.downloads}" />
+		<mkdir dir="${mgi.downloads}" />
 		<mkdir dir="${kb}" />
 	</target>
 
@@ -573,6 +576,27 @@
 			<sysproperty key="java.library.path" value="lib" />
 			<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
 			<sysproperty key="log4j.configuration" value="log4j.properties" />
+		</java>
+	</target>
+
+	<target name="zfin-genes-to-owl" depends="init">
+		<get src="http://zfin.org/downloads/genetic_markers.txt" dest="${zfin.downloads}/zfin-genetic-markers.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
+		<java classname="org.phenoscape.owl.mod.zfin.ZFINGeneticMarkersToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<arg value="${zfin.downloads}/zfin-genetic-markers.txt" />
+			<arg value="${kb}/zfin-genes.owl" />
+		</java>
+		<get src="http://zfin.org/downloads/aliases.txt" dest="${zfin.downloads}/zfin-aliases.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
+		<java classname="org.phenoscape.owl.mod.zfin.ZFINPreviousGeneNamesToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<arg value="${zfin.downloads}/zfin-aliases.txt" />
+			<arg value="${kb}/zfin-previous-gene-names.owl" />
+		</java>
+	</target>
+
+	<target name="mgi-genes-to-owl" depends="init">
+		<get src="ftp://ftp.informatics.jax.org/pub/reports/MRK_List2.rpt" dest="${mgi.downloads}/mgi-genetic-markers.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
+		<java classname="org.phenoscape.owl.mod.mgi.MGIGeneticMarkersToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<arg value="${mgi.downloads}/mgi-genetic-markers.txt" />
+			<arg value="${kb}/mgi-genes.owl" />
 		</java>
 	</target>
 
