@@ -50,6 +50,8 @@
 	<property name="vto" value="http://purl.obolibrary.org/obo/vto.owl" />
 	<property name="uberon-merged" value="http://purl.obolibrary.org/obo/uberon/merged.owl" />
 	<property name="phenoscape-ext" value="http://purl.obolibrary.org/obo/uberon/phenoscape-ext.owl" />
+	<property name="zfa" value="http://purl.obolibrary.org/obo/zfa.owl" />
+	<property name="zfa-bridge" value="http://purl.obolibrary.org/obo/uberon/bridge/uberon-ext-bridge-to-zfa.owl" />
 	<property name="phenoscape-tbox" value="http://purl.obolibrary.org/obo/phenoscape/tbox.owl" />
 	<urlencode property="ro.encoded" value="${ro}" />
 	<urlencode property="iao-metadata.encoded" value="${iao-metadata}" />
@@ -59,6 +61,8 @@
 	<urlencode property="vto.encoded" value="${vto}" />
 	<urlencode property="uberon-merged.encoded" value="${uberon-merged}" />
 	<urlencode property="phenoscape-ext.encoded" value="${phenoscape-ext}" />
+	<urlencode property="zfa.encoded" value="${zfa}" />
+	<urlencode property="zfa-bridge.encoded" value="${zfa-bridge}" />
 	<urlencode property="phenoscape-tbox.encoded" value="${phenoscape-tbox}" />
 	<urlencode property="partof.uberon-merged.encoded" value="http://purl.obolibrary.org/obo/BFO_0000050_some_http://purl.obolibrary.org/obo/uberon/merged.owl" />
 	<urlencode property="haspart.uberon-merged.encoded" value="http://purl.obolibrary.org/obo/BFO_0000051_some_http://purl.obolibrary.org/obo/uberon/merged.owl" />
@@ -74,11 +78,14 @@
 	<urlencode property="absent.phenoscape-ext.encoded" value="http://phenoscape.org/not_has_part/http://purl.obolibrary.org/obo/uberon/phenoscape-ext.owl" />
 	<urlencode property="absent.uberon-merged.encoded" value="http://phenoscape.org/not_has_part/http://purl.obolibrary.org/obo/uberon/merged.owl" />
 	<urlencode property="absent.go.encoded" value="http://phenoscape.org/not_has_part/http://purl.obolibrary.org/obo/go.owl" />
-	<urlencode property="developsfrom.tao.encoded" value="http://purl.obolibrary.org/obo/tao.owl/develops_from_rules.owl" />
 	<urlencode property="developsfrom.phenoscape-ext.encoded" value="http://purl.obolibrary.org/obo/uberon/phenoscape-ext.owl/reverse_develops_from_rules.owl" />
 	<urlencode property="developsfrom.uberon-merged.encoded" value="http://purl.obolibrary.org/obo/uberon/merged.owl/reverse_develops_from_rules.owl" />
+	<urlencode property="partof.zfa.encoded" value="http://purl.obolibrary.org/obo/BFO_0000050_some_http://purl.obolibrary.org/obo/zfa.owl" />
+	<urlencode property="haspart.zfa.encoded" value="http://purl.obolibrary.org/obo/BFO_0000051_some_http://purl.obolibrary.org/obo/zfa.owl" />
+	<urlencode property="involves.zfa.encoded" value="http://vocab.phenoscape.org/involves_some_http://purl.obolibrary.org/obo/zfa.owl" />
+	<urlencode property="developsfrom.zfa.encoded" value="http://purl.obolibrary.org/obo/zfa.owl/reverse_develops_from_rules.owl" />
+	<urlencode property="absent.zfa.encoded" value="http://phenoscape.org/not_has_part/http://purl.obolibrary.org/obo/zfa.owl" />
 	<urlencode property="individuals.vto.encoded" value="http://phenoscape.org/individuals/${vto}" />
-
 
 	<path id="jarsclasspath">
 		<fileset dir="lib">
@@ -164,6 +171,11 @@
 		</condition>
 	</target>
 
+	<target name="download-zfa" depends="init">
+		<get src="http://purl.obolibrary.org/obo/zfa.owl" dest="${ontology.downloads}/${zfa.encoded}" usetimestamp="true" skipexisting="${avoid.downloads}" />
+		<get src="http://purl.obolibrary.org/obo/uberon/bridge/uberon-ext-bridge-to-zfa.owl" dest="${ontology.downloads}/${zfa-bridge.encoded}" usetimestamp="true" skipexisting="${avoid.downloads}" />
+	</target>
+
 	<target name="download-pato" depends="init">
 		<if>
 			<available file="${ontology.downloads}/${pato.encoded}" />
@@ -215,7 +227,7 @@
 		</condition>
 	</target>
 
-	<target name="download-ontologies" depends="init,download-iao-metadata,download-uberon-merged,download-phenoscape-ext,download-go,download-pato,download-bspo,download-vto">
+	<target name="download-ontologies" depends="init,download-iao-metadata,download-uberon-merged,download-phenoscape-ext,download-go,download-pato,download-bspo,download-vto,download-zfa">
 		<copy file="ontologies/ro-slim.owl" tofile="${kb}/${ro.encoded}" preservelastmodified="true" />
 		<copy file="ontologies/phenoscape-tbox.owl" tofile="${kb}/${phenoscape-tbox.encoded}" preservelastmodified="true" />
 	</target>
@@ -248,7 +260,25 @@
 		</java>
 	</target>
 
-	<target name="materialize-phenoscape-tbox" depends="normalize-uberon-merged,normalize-phenoscape-ext,normalize-pato,normalize-bspo,normalize-go,generate-partof-uberon-merged,generate-partof-go,generate-haspart-uberon-merged,generate-haspart-go,generate-absent-uberon-merged,generate-uberon-merged-develops-from-rules,generate-partof-phenoscape-ext,generate-haspart-phenoscape-ext,generate-absent-phenoscape-ext,generate-phenoscape-ext-develops-from-rules,generate-bearerof-pato,generate-absent-go,generate-involves-uberon-merged,generate-involves-phenoscape-ext,generate-involves-go,generate-involves-pato">
+	<target name="normalize-zfa" depends="download-ontologies">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<arg value="${ontology.downloads}/${zfa.encoded}" />
+			<arg value="${kb}/${zfa.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
+	<target name="normalize-zfa-bridge" depends="download-ontologies">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<arg value="${ontology.downloads}/${zfa-bridge.encoded}" />
+			<arg value="${kb}/${zfa-bridge.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
+	<target name="materialize-phenoscape-tbox" depends="normalize-uberon-merged,normalize-phenoscape-ext,normalize-pato,normalize-bspo,normalize-go,normalize-zfa,normalize-zfa-bridge,generate-partof-uberon-merged,generate-partof-go,generate-haspart-uberon-merged,generate-haspart-go,generate-absent-uberon-merged,generate-uberon-merged-develops-from-rules,generate-partof-phenoscape-ext,generate-haspart-phenoscape-ext,generate-absent-phenoscape-ext,generate-phenoscape-ext-develops-from-rules,generate-bearerof-pato,generate-absent-go,generate-involves-uberon-merged,generate-involves-phenoscape-ext,generate-involves-go,generate-involves-pato,generate-partof-zfa,generate-haspart-zfa,generate-involves-zfa,generate-absent-zfa,generate-zfa-develops-from-rules">
 		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
 			<arg value="${kb}/${phenoscape-tbox.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -428,6 +458,44 @@
 		</java>
 	</target>
 
+	<target name="generate-partof-zfa" depends="normalize-zfa">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<arg value="${kb}/${zfa.encoded}" />
+			<arg value="http://purl.obolibrary.org/obo/BFO_0000050" />
+			<arg value="${kb}/${partof.zfa.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
+	<target name="generate-involves-zfa" depends="normalize-zfa">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${kb}/${zfa.encoded}" />
+			<arg value="http://vocab.phenoscape.org/involves" />
+			<arg value="${kb}/${involves.zfa.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
+	<target name="generate-haspart-zfa" depends="normalize-zfa">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${kb}/${zfa.encoded}" />
+			<arg value="http://purl.obolibrary.org/obo/BFO_0000051" />
+			<arg value="${kb}/${haspart.zfa.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
+	<target name="generate-absent-zfa" depends="normalize-zfa">
+		<java classname="org.phenoscape.owl.NegationClassGenerator" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<arg value="${kb}/${haspart.zfa.encoded}" />
+			<arg value="${kb}/${absent.zfa.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+		</java>
+	</target>
+
 	<target name="generate-absent-uberon-merged" depends="normalize-uberon-merged">
 		<java classname="org.phenoscape.owl.NegationClassGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
 			<arg value="${kb}/${haspart.uberon-merged.encoded}" />
@@ -464,6 +532,14 @@
 		<java classname="org.phenoscape.owl.ReverseDevelopsFromRuleGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
 			<arg value="${kb}/${phenoscape-ext.encoded}" />
 			<arg value="${kb}/${developsfrom.phenoscape-ext.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+		</java>
+	</target>
+
+	<target name="generate-zfa-develops-from-rules" depends="generate-absent-zfa">
+		<java classname="org.phenoscape.owl.ReverseDevelopsFromRuleGenerator" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<arg value="${kb}/${zfa.encoded}" />
+			<arg value="${kb}/${developsfrom.zfa.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 		</java>
 	</target>
