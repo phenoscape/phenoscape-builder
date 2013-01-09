@@ -783,6 +783,26 @@
 		</java>
 	</target>
 
+	<target name="mgi-expression-to-owl" depends="download-ontologies">
+		<java classname="org.phenoscape.owl.mod.mgi.MGIExpressionToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<arg value="ontologies/GXD_limb_20130109.txt" />
+			<arg value="${kb}/mgi-expression.owl" />
+		</java>
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<arg value="${kb}/mgi-expression.owl" />
+			<arg value="${kb}/mgi-expression.owl" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<arg value="${kb}/mgi-expression.owl" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+			<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
+			<sysproperty key="log4j.configuration" value="log4j.properties" />
+		</java>
+	</target>
+
 	<target name="xenbase-genes-to-owl" depends="init">
 		<get src="ftp://ftp.xenbase.org/pub/GenePageReports/GenePageGeneralInfo_ManuallyCurated.txt" dest="${xenbase.downloads}/xenbase-genes.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
 		<java classname="org.phenoscape.owl.mod.xenbase.XenbaseGenesToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
