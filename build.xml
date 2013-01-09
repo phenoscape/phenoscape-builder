@@ -835,28 +835,31 @@
 			<include name="**/*.xml" />
 			<exclude name="**/catalog-v001.xml" />
 		</fileset>
-		<pathconvert property="report.file.args" refid="fish_files" pathsep="' '" />
+		<pathconvert property="fish.report.file.args" refid="fish_files" pathsep="' '" />
+		<echo>Fish excluding tetrapodomorphs</echo>
 		<java classname="org.phenoscape.owl.report.AnnotationStatus" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
 			<sysproperty key="entityExpansionLimit" value="9999999" />
-			<arg line="'${report.file.args}'" />
+			<arg line="'${fish.report.file.args}'" />
 		</java>
 		<fileset dir="${nexml}/fin_limb-incomplete-files/Amphibians and transitional" id="amphibian_files">
 			<include name="**/*.xml" />
 			<exclude name="**/catalog-v001.xml" />
 		</fileset>
-		<pathconvert property="report.file.args" refid="amphibian_files" pathsep="' '" />
+		<pathconvert property="amphibian.report.file.args" refid="amphibian_files" pathsep="' '" />
+		<echo>Amphibians and transitional</echo>
 		<java classname="org.phenoscape.owl.report.AnnotationStatus" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
 			<sysproperty key="entityExpansionLimit" value="9999999" />
-			<arg line="'${report.file.args}'" />
+			<arg line="'${amphibian.report.file.args}'" />
 		</java>
 		<fileset dir="${nexml}/fin_limb-incomplete-files/Sereno Files" id="sereno_files">
 			<include name="**/*.xml" />
 			<exclude name="**/catalog-v001.xml" />
 		</fileset>
-		<pathconvert property="report.file.args" refid="sereno_files" pathsep="' '" />
+		<pathconvert property="sereno.report.file.args" refid="sereno_files" pathsep="' '" />
+		<echo>Sereno Files</echo>
 		<java classname="org.phenoscape.owl.report.AnnotationStatus" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
 			<sysproperty key="entityExpansionLimit" value="9999999" />
-			<arg line="'${report.file.args}'" />
+			<arg line="'${sereno.report.file.args}'" />
 		</java>
 	</target>
 
