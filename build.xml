@@ -39,11 +39,13 @@
 	<property name="ontology.downloads" value="${staging}/downloads/ontologies" />
 	<property name="zfin.downloads" value="${staging}/downloads/zfin" />
 	<property name="mgi.downloads" value="${staging}/downloads/mgi" />
+	<property name="human.downloads" value="${staging}/downloads/human" />
 	<property name="xenbase.downloads" value="${staging}/downloads/xenbase" />
 	<property name="kb" value="${staging}/kb/kb" />
 	<property name="kb-closure" value="${staging}/kb/closure" />
 	<property name="ro" value="http://purl.obolibrary.org/obo/ro.owl" />
 	<property name="iao-metadata" value="http://purl.obolibrary.org/obo/iao/ontology-metadata.owl" />
+	<property name="uberon-references" value="http://purl.obolibrary.org/obo/uberon/references/references.owl" />
 	<property name="tao" value="http://purl.obolibrary.org/obo/tao.owl" />
 	<property name="go" value="http://purl.obolibrary.org/obo/go.owl" />
 	<property name="pato" value="http://purl.obolibrary.org/obo/pato.owl" />
@@ -56,8 +58,36 @@
 	<property name="xao" value="http://purl.obolibrary.org/obo/xao.owl" />
 	<property name="xao-bridge" value="http://purl.obolibrary.org/obo/uberon/bridge/uberon-bridge-to-xao.owl" />
 	<property name="phenoscape-tbox" value="http://purl.obolibrary.org/obo/phenoscape/tbox.owl" />
+	<property name="hp" value="http://purl.obolibrary.org/obo/hp.owl" />
+	<property name="hp-equivalence-axioms" value="http://purl.obolibrary.org/obo/hp/hp-equivalence-axioms.obo" />
+	<property name="hp-logical-definitions" value="http://purl.obolibrary.org/obo/hp/hp-logical-definitions.owl" />
+	<property name="fma-bridge" value="http://purl.obolibrary.org/obo/uberon/bridge/uberon-bridge-to-fma.owl" />
+
+	<property name="human-phenotypes" value="http://purl.obolibrary.org/obo/phenoscape/human_phenotypes.owl" />
+	<urlencode property="human-phenotypes.encoded" value="${human-phenotypes}" />
+	<property name="mgi-expression" value="http://purl.obolibrary.org/obo/phenoscape/mgi_gene_expression.owl" />
+	<urlencode property="mgi-expression.encoded" value="${mgi-expression}" />
+	<property name="mgi-genes" value="http://purl.obolibrary.org/obo/phenoscape/mgi_genes.owl" />
+	<urlencode property="mgi-genes.encoded" value="${mgi-genes}" />
+	<property name="mgi-phenotypes" value="http://purl.obolibrary.org/obo/phenoscape/mgi_phenotypes.owl" />
+	<urlencode property="mgi-phenotypes.encoded" value="${mgi-phenotypes}" />
+	<property name="zfin-expression" value="http://purl.obolibrary.org/obo/phenoscape/zfin_gene_expression.owl" />
+	<urlencode property="zfin-expression.encoded" value="${zfin-expression}" />
+	<property name="zfin-genes" value="http://purl.obolibrary.org/obo/phenoscape/zfin_genes.owl" />
+	<urlencode property="zfin-genes.encoded" value="${zfin-genes}" />
+	<property name="zfin-phenotypes" value="http://purl.obolibrary.org/obo/phenoscape/zfin_phenotypes.owl" />
+	<urlencode property="zfin-phenotypes.encoded" value="${zfin-phenotypes}" />
+	<property name="zfin-previous-names" value="http://purl.obolibrary.org/obo/phenoscape/zfin_previous_gene_names.owl" />
+	<urlencode property="zfin-previous-names.encoded" value="${zfin-previous-names}" />
+	<property name="xenbase-expression" value="http://purl.obolibrary.org/obo/phenoscape/xenbase_gene_expression.owl" />
+	<urlencode property="xenbase-expression.encoded" value="${xenbase-expression}" />
+	<property name="xenbase-genes" value="http://purl.obolibrary.org/obo/phenoscape/xenbase_genes.owl" />
+	<urlencode property="xenbase-genes.encoded" value="${xenbase-genes}" />
+
+
 	<urlencode property="ro.encoded" value="${ro}" />
 	<urlencode property="iao-metadata.encoded" value="${iao-metadata}" />
+	<urlencode property="uberon-references.encoded" value="${uberon-references}" />
 	<urlencode property="go.encoded" value="${go}" />
 	<urlencode property="pato.encoded" value="${pato}" />
 	<urlencode property="bspo.encoded" value="${bspo}" />
@@ -69,6 +99,10 @@
 	<urlencode property="xao.encoded" value="${xao}" />
 	<urlencode property="xao-bridge.encoded" value="${xao-bridge}" />
 	<urlencode property="phenoscape-tbox.encoded" value="${phenoscape-tbox}" />
+	<urlencode property="hp.encoded" value="${hp}" />
+	<urlencode property="hp-equivalence-axioms.encoded" value="${hp-equivalence-axioms}" />
+	<urlencode property="hp-logical-definitions.encoded" value="${hp-logical-definitions}" />
+	<urlencode property="fma-bridge.encoded" value="${fma-bridge}" />
 	<urlencode property="partof.uberon-merged.encoded" value="http://purl.obolibrary.org/obo/BFO_0000050_some_http://purl.obolibrary.org/obo/uberon/merged.owl" />
 	<urlencode property="haspart.uberon-merged.encoded" value="http://purl.obolibrary.org/obo/BFO_0000051_some_http://purl.obolibrary.org/obo/uberon/merged.owl" />
 	<urlencode property="involves.uberon-merged.encoded" value="http://vocab.phenoscape.org/involves_some_http://purl.obolibrary.org/obo/uberon/merged.owl" />
@@ -95,6 +129,7 @@
 	<urlencode property="involves.xao.encoded" value="http://vocab.phenoscape.org/involves_some_http://purl.obolibrary.org/obo/xao.owl" />
 	<urlencode property="developsfrom.xao.encoded" value="http://purl.obolibrary.org/obo/xao.owl/reverse_develops_from_rules.owl" />
 	<urlencode property="absent.xao.encoded" value="http://phenoscape.org/not_has_part/http://purl.obolibrary.org/obo/xao.owl" />
+	<urlencode property="involves.hp.encoded" value="http://vocab.phenoscape.org/involves_some_http://purl.obolibrary.org/obo/hp.owl" />
 	<urlencode property="individuals.vto.encoded" value="http://phenoscape.org/individuals/${vto}" />
 
 	<path id="jarsclasspath">
@@ -109,6 +144,7 @@
 		<mkdir dir="${ontology.downloads}" />
 		<mkdir dir="${zfin.downloads}" />
 		<mkdir dir="${mgi.downloads}" />
+		<mkdir dir="${human.downloads}" />
 		<mkdir dir="${xenbase.downloads}" />
 		<mkdir dir="${kb}" />
 	</target>
@@ -129,6 +165,24 @@
 			<isfalse value="${iao-metadata.matches}" />
 		</condition>
 		<copy file="${ontology.downloads}/${iao-metadata.encoded}" tofile="${kb}/${iao-metadata.encoded}" preservelastmodified="true" />
+	</target>
+
+	<target name="download-uberon-references" depends="init">
+		<if>
+			<available file="${ontology.downloads}/${uberon-references.encoded}" />
+			<then>
+				<checksum file="${ontology.downloads}/${uberon-references.encoded}" property="uberon-references.checksum" />
+			</then>
+			<else>
+				<property name="uberon-references.checksum" value="0" />
+			</else>
+		</if>
+		<get src="http://purl.obolibrary.org/obo/uberon/references/references.owl" dest="${ontology.downloads}/${uberon-references.encoded}" usetimestamp="true" skipexisting="${avoid.downloads}" />
+		<checksum file="${ontology.downloads}/${uberon-references.encoded}" property="${uberon-references.checksum}" verifyproperty="uberon-references.matches" />
+		<condition property="${uberon-references}.modified">
+			<isfalse value="${uberon-references.matches}" />
+		</condition>
+		<copy file="${ontology.downloads}/${uberon-references.encoded}" tofile="${kb}/${uberon-references.encoded}" preservelastmodified="true" />
 	</target>
 
 	<target name="download-uberon-merged" depends="init">
@@ -192,6 +246,51 @@
 		<get src="http://purl.obolibrary.org/obo/uberon/bridge/uberon-bridge-to-xao.owl" dest="${ontology.downloads}/${xao-bridge.encoded}" usetimestamp="true" skipexisting="${avoid.downloads}" />
 	</target>
 
+	<target name="download-hpo" depends="init">
+		<get src="http://purl.obolibrary.org/obo/hp.owl" dest="${ontology.downloads}/${hp.encoded}" usetimestamp="true" skipexisting="${avoid.downloads}" />
+		<get src="http://purl.obolibrary.org/obo/hp/hp-equivalence-axioms.obo" dest="${ontology.downloads}/${hp-equivalence-axioms.encoded}" usetimestamp="true" skipexisting="${avoid.downloads}" />
+		<get src="http://purl.obolibrary.org/obo/uberon/bridge/uberon-bridge-to-fma.owl" dest="${ontology.downloads}/${fma-bridge.encoded}" usetimestamp="true" skipexisting="${avoid.downloads}" />
+	</target>
+
+	<target name="normalize-hpo" depends="download-hpo">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<arg value="${ontology.downloads}/${hp.encoded}" />
+			<arg value="${kb}/${hp.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+		<java classname="org.obolibrary.cli.OBORunner" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="--allow-dangling" />
+			<arg value="${ontology.downloads}/${hp-equivalence-axioms.encoded}" />
+			<arg value="-o" />
+			<arg value="${kb}/${hp-logical-definitions.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="entityExpansionLimit" value="9999999" />
+		</java>
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<arg value="${kb}/${hp-logical-definitions.encoded}" />
+			<arg value="${kb}/${hp-logical-definitions.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<arg value="${ontology.downloads}/${fma-bridge.encoded}" />
+			<arg value="${kb}/${fma-bridge.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
+	<target name="generate-involves-hpo" depends="normalize-hpo">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+			<arg value="${kb}/${hp.encoded}" />
+			<arg value="http://vocab.phenoscape.org/involves" />
+			<arg value="${kb}/${involves.hp.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+		</java>
+	</target>
+
 	<target name="download-pato" depends="init">
 		<if>
 			<available file="${ontology.downloads}/${pato.encoded}" />
@@ -243,9 +342,10 @@
 		</condition>
 	</target>
 
-	<target name="download-ontologies" depends="init,download-iao-metadata,download-uberon-merged,download-phenoscape-ext,download-go,download-pato,download-bspo,download-vto,download-zfa,download-xao">
+	<target name="download-ontologies" depends="init,download-iao-metadata,download-uberon-references,download-uberon-merged,download-phenoscape-ext,download-go,download-pato,download-bspo,download-vto,download-zfa,download-xao">
 		<copy file="ontologies/ro-slim.owl" tofile="${kb}/${ro.encoded}" preservelastmodified="true" />
-		<copy file="ontologies/phenoscape-tbox.owl" tofile="${kb}/${phenoscape-tbox.encoded}" preservelastmodified="true" />
+		<!--	<copy file="ontologies/phenoscape-tbox.owl" tofile="${kb}/${phenoscape-tbox.encoded}" preservelastmodified="true" /> -->
+		<copy file="ontologies/phenoscape-tbox-fewer-classes.owl" tofile="${kb}/${phenoscape-tbox.encoded}" preservelastmodified="true" />
 	</target>
 
 	<target name="normalize-vto" depends="download-ontologies">
@@ -313,14 +413,14 @@
 	</target>
 
 	<target name="materialize-phenoscape-tbox" depends="normalize-uberon-merged,normalize-phenoscape-ext,normalize-pato,normalize-bspo,
-		normalize-go,normalize-zfa,normalize-zfa-bridge,normalize-xao,normalize-xao-bridge,generate-partof-uberon-merged,
+		normalize-go,normalize-zfa,normalize-zfa-bridge,normalize-xao,normalize-xao-bridge,normalize-hpo,generate-partof-uberon-merged,
 		generate-partof-go,
 		generate-haspart-uberon-merged,generate-haspart-go,generate-absent-uberon-merged,generate-uberon-merged-develops-from-rules,
 		generate-partof-phenoscape-ext,generate-haspart-phenoscape-ext,generate-absent-phenoscape-ext,
 		generate-phenoscape-ext-develops-from-rules,generate-bearerof-pato,generate-absent-go,generate-involves-uberon-merged,
 		generate-involves-phenoscape-ext,generate-involves-go,generate-involves-pato,generate-partof-zfa,generate-haspart-zfa,
 		generate-involves-zfa,generate-absent-zfa,generate-zfa-develops-from-rules,generate-partof-xao,generate-haspart-xao,
-		generate-involves-xao,generate-absent-xao,generate-xao-develops-from-rules">
+		generate-involves-xao,generate-absent-xao,generate-xao-develops-from-rules,generate-involves-hpo">
 		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
 			<arg value="${kb}/${phenoscape-tbox.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -637,6 +737,7 @@
 			<arg value="${kb}/${phenoscape-tbox.encoded}" />
 			<sysproperty key="org.phenoscape.owl.MaterializeSubClassOfClosure.target" value="${kb-closure}/hierarchy_closure.owl" />
 			<sysproperty key="java.library.path" value="lib" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 		</java>
 	</target>
 
@@ -726,16 +827,16 @@
 		<get src="http://zfin.org/downloads/wildtype-expression.txt" dest="${zfin.downloads}/zfin-expression.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
 		<java classname="org.phenoscape.owl.mod.zfin.ZFINExpressionToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
 			<arg value="${zfin.downloads}/zfin-expression.txt" />
-			<arg value="${kb}/zfin-expression.owl" />
+			<arg value="${kb}/${zfin-expression.encoded}" />
 		</java>
 		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
-			<arg value="${kb}/zfin-expression.owl" />
-			<arg value="${kb}/zfin-expression.owl" />
+			<arg value="${kb}/${zfin-expression.encoded}" />
+			<arg value="${kb}/${zfin-expression.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
 		</java>
-		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
-			<arg value="${kb}/zfin-expression.owl" />
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
+			<arg value="${kb}/${zfin-expression.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
 			<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
@@ -746,15 +847,15 @@
 	<target name="zfin-phenotypes-to-owl" depends="init">
 		<java classname="org.phenoscape.owl.mod.zfin.ZFINPhenotypesToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
 			<arg value="ontologies/zfin-phenotypes-prelim.txt" />
-			<arg value="${kb}/zfin-phenotypes.owl" />
+			<arg value="${kb}/${zfin-phenotypes.encoded}" />
 		</java>
 		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
-			<arg value="${kb}/zfin-phenotypes.owl" />
-			<arg value="${kb}/zfin-phenotypes.owl" />
+			<arg value="${kb}/${zfin-phenotypes.encoded}" />
+			<arg value="${kb}/${zfin-phenotypes.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 		</java>
-		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
-			<arg value="${kb}/zfin-phenotypes.owl" />
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
+			<arg value="${kb}/${zfin-phenotypes.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
 			<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
@@ -766,12 +867,32 @@
 		<get src="http://zfin.org/downloads/genetic_markers.txt" dest="${zfin.downloads}/zfin-genetic-markers.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
 		<java classname="org.phenoscape.owl.mod.zfin.ZFINGeneticMarkersToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
 			<arg value="${zfin.downloads}/zfin-genetic-markers.txt" />
-			<arg value="${kb}/zfin-genes.owl" />
+			<arg value="${kb}/${zfin-genes.encoded}" />
 		</java>
 		<get src="http://zfin.org/downloads/aliases.txt" dest="${zfin.downloads}/zfin-aliases.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
 		<java classname="org.phenoscape.owl.mod.zfin.ZFINPreviousGeneNamesToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
 			<arg value="${zfin.downloads}/zfin-aliases.txt" />
-			<arg value="${kb}/zfin-previous-gene-names.owl" />
+			<arg value="${kb}/${zfin-previous-names.encoded}" />
+		</java>
+	</target>
+
+	<target name="human-phenotypes-to-owl" depends="init">
+		<get src="http://compbio.charite.de/hudson/job/hpo.annotations.monthly/lastStableBuild/artifact/annotation/genes_to_phenotype.txt" dest="${human.downloads}/human-phenotype-annotations.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
+		<java classname="org.phenoscape.owl.mod.human.HumanPhenotypesToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<arg value="${human.downloads}/human-phenotype-annotations.txt" />
+			<arg value="${kb}/${human-phenotypes.encoded}" />
+		</java>
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<arg value="${kb}/${human-phenotypes.encoded}" />
+			<arg value="${kb}/${human-phenotypes.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+		</java>
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
+			<arg value="${kb}/${human-phenotypes.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+			<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
+			<sysproperty key="log4j.configuration" value="log4j.properties" />
 		</java>
 	</target>
 
@@ -779,23 +900,42 @@
 		<get src="ftp://ftp.informatics.jax.org/pub/reports/MRK_List2.rpt" dest="${mgi.downloads}/mgi-genetic-markers.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
 		<java classname="org.phenoscape.owl.mod.mgi.MGIGeneticMarkersToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
 			<arg value="${mgi.downloads}/mgi-genetic-markers.txt" />
-			<arg value="${kb}/mgi-genes.owl" />
+			<arg value="${kb}/${mgi-genes.encoded}" />
 		</java>
 	</target>
 
-	<target name="mgi-expression-to-owl" depends="download-ontologies">
+	<target name="mgi-expression-to-owl" depends="init">
 		<java classname="org.phenoscape.owl.mod.mgi.MGIExpressionToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
 			<arg value="ontologies/GXD_limb_20130109.txt" />
-			<arg value="${kb}/mgi-expression.owl" />
+			<arg value="${kb}/${mgi-expression.encoded}" />
 		</java>
 		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
-			<arg value="${kb}/mgi-expression.owl" />
-			<arg value="${kb}/mgi-expression.owl" />
+			<arg value="${kb}/${mgi-expression.encoded}" />
+			<arg value="${kb}/${mgi-expression.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
 		</java>
-		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
-			<arg value="${kb}/mgi-expression.owl" />
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
+			<arg value="${kb}/${mgi-expression.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+			<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
+			<sysproperty key="log4j.configuration" value="log4j.properties" />
+		</java>
+	</target>
+
+	<target name="mgi-phenotypes-to-owl" depends="init">
+		<java classname="org.phenoscape.owl.mod.mgi.MGIPhenotypesToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<arg value="ontologies/MGI_pheno_limb.txt" />
+			<arg value="${kb}/${mgi-phenotypes.encoded}" />
+		</java>
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+			<arg value="${kb}/${mgi-phenotypes.encoded}" />
+			<arg value="${kb}/${mgi-phenotypes.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+		</java>
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
+			<arg value="${kb}/${mgi-phenotypes.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
 			<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
@@ -807,11 +947,11 @@
 		<get src="ftp://ftp.xenbase.org/pub/GenePageReports/GenePageGeneralInfo_ManuallyCurated.txt" dest="${xenbase.downloads}/xenbase-genes.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
 		<java classname="org.phenoscape.owl.mod.xenbase.XenbaseGenesToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
 			<arg value="${xenbase.downloads}/xenbase-genes.txt" />
-			<arg value="${kb}/xenbase-genes.owl" />
+			<arg value="${kb}/${xenbase-genes.encoded}" />
 		</java>
 	</target>
 
-	<target name="xenbase-expression-to-owl" depends="download-ontologies">
+	<target name="xenbase-expression-to-owl" depends="init">
 		<get src="ftp://ftp.xenbase.org/pub/GenePageReports/GeneExpression_laevis.txt" dest="${xenbase.downloads}/laevis-expression.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
 		<get src="ftp://ftp.xenbase.org/pub//GenePageReports/GeneExpression_tropicalis.txt" dest="${xenbase.downloads}/tropicalis-expression.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
 		<get src="ftp://ftp.xenbase.org/pub/GenePageReports/XenbaseGenepageToGeneIdMapping.txt" dest="${xenbase.downloads}/genepage-gene-mappings.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
@@ -819,16 +959,16 @@
 			<arg value="${xenbase.downloads}/genepage-gene-mappings.txt" />
 			<arg value="${xenbase.downloads}/laevis-expression.txt" />
 			<arg value="${xenbase.downloads}/tropicalis-expression.txt" />
-			<arg value="${kb}/xenbase-expression.owl" />
+			<arg value="${kb}/${xenbase-expression.encoded}" />
 		</java>
 		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
-			<arg value="${kb}/xenbase-expression.owl" />
-			<arg value="${kb}/xenbase-expression.owl" />
+			<arg value="${kb}/${xenbase-expression.encoded}" />
+			<arg value="${kb}/${xenbase-expression.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
 		</java>
-		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
-			<arg value="${kb}/xenbase-expression.owl" />
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
+			<arg value="${kb}/${xenbase-expression.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
 			<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
@@ -883,6 +1023,26 @@
 		</java>
 	</target>
 
+	<target name="mod-data-to-owl" depends="zfin-genes-to-owl,zfin-expression-to-owl,zfin-phenotypes-to-owl,
+		mgi-genes-to-owl,mgi-expression-to-owl,mgi-phenotypes-to-owl,xenbase-genes-to-owl,xenbase-expression-to-owl,
+		human-phenotypes-to-owl" />
+
 	<target name="build-all" description="" depends="download-ontologies,materialize-phenoscape-tbox,assert-negation-hierarchy-phenoscape-tbox,generate-individuals-vto,materialize-class-hierarchy-closure,materialize-individuals-vto" />
+
+	<target name="materialize-for-fewer-classes" depends="normalize-uberon-merged,normalize-phenoscape-ext,normalize-pato,normalize-bspo,
+		normalize-go,normalize-zfa,normalize-zfa-bridge,normalize-xao,normalize-xao-bridge,normalize-hpo,
+		generate-involves-uberon-merged,generate-involves-phenoscape-ext,generate-involves-pato">
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
+			<arg value="${kb}/${phenoscape-tbox.encoded}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+			<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
+			<sysproperty key="log4j.configuration" value="log4j.properties" />
+		</java>
+	</target>
+
+	<target name="build-all-fewer-classes" description="" depends="download-ontologies,materialize-for-fewer-classes,zfin-expression-to-owl,zfin-phenotypes-to-owl,zfin-genes-to-owl,
+		human-phenotypes-to-owl,mgi-genes-to-owl,mgi-expression-to-owl,
+		xenbase-genes-to-owl,xenbase-expression-to-owl" />
 
 </project>

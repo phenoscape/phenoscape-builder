@@ -10,6 +10,14 @@
 	<version>1.0-SNAPSHOT</version>
 	<name>PhenoscapeBuilder</name>
 	<repositories>
+		<repository>
+			<id>BerkeleyBOP</id>
+			<name>Berkeley BOP maven repository</name>
+			<url>http://code.berkeleybop.org/maven/repository/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
 	</repositories>
 	<dependencies>
 		<dependency>
@@ -21,6 +29,17 @@
 			<groupId>ant-contrib</groupId>
 			<artifactId>ant-contrib</artifactId>
 			<version>1.0b3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.bbop</groupId>
+			<artifactId>oboformat</artifactId>
+			<version>0.5.3</version>
+			<exclusions>
+				<exclusion>
+					<groupId>owlapi</groupId>
+					<artifactId>owlapi</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 	<description>Phenoscape KB Builder</description>

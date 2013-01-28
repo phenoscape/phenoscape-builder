@@ -45,17 +45,17 @@
         <rdfs:label rdf:datatype="&xsd;string">shorthand</rdfs:label>
     </owl:AnnotationProperty>
     <owl:AnnotationProperty rdf:about="&rdfs;label"/>
-    <owl:AnnotationProperty rdf:about="&obo;IAO_0000115"/>
     <owl:AnnotationProperty rdf:about="&obo;IAO_0000424"/>
-    <owl:AnnotationProperty rdf:about="&obo;IAO_0000114"/>
+    <owl:AnnotationProperty rdf:about="&obo;IAO_0000115"/>
     <owl:AnnotationProperty rdf:about="&obo;IAO_0000412">
         <rdfs:label xml:lang="en">imported from</rdfs:label>
     </owl:AnnotationProperty>
+    <owl:AnnotationProperty rdf:about="&obo;IAO_0000114"/>
     <owl:AnnotationProperty rdf:about="&obo;IAO_0000119"/>
-    <owl:AnnotationProperty rdf:about="&obo;IAO_0000117"/>
     <owl:AnnotationProperty rdf:about="&obo;IAO_0000426"/>
-    <owl:AnnotationProperty rdf:about="&obo;IAO_0000118"/>
+    <owl:AnnotationProperty rdf:about="&obo;IAO_0000117"/>
     <owl:AnnotationProperty rdf:about="&obo;IAO_0000425"/>
+    <owl:AnnotationProperty rdf:about="&obo;IAO_0000118"/>
     <owl:AnnotationProperty rdf:about="&obo;IAO_0000111"/>
     <owl:AnnotationProperty rdf:about="&obo;IAO_0000112"/>
     
@@ -116,6 +116,7 @@
         <oboInOwl:shorthand rdf:datatype="&xsd;string">inheres_in</oboInOwl:shorthand>
         <obo:IAO_0000118 xml:lang="en">inheres_in</obo:IAO_0000118>
         <owl:inverseOf rdf:resource="&obo;BFO_0000053"/>
+        <rdfs:subPropertyOf rdf:resource="&obo;RO_0002314"/>
     </owl:ObjectProperty>
     
 
@@ -178,16 +179,32 @@
     
 
 
+    <!-- http://purl.obolibrary.org/obo/RO_0002314 -->
+
+    <owl:ObjectProperty rdf:about="&obo;RO_0002314">
+        <rdfs:label>inheres in part of</rdfs:label>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="&obo;BFO_0000052"/>
+            <rdf:Description rdf:about="&obo;BFO_0000050"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://vocab.phenoscape.org/involves -->
 
     <owl:ObjectProperty rdf:about="http://vocab.phenoscape.org/involves">
         <owl:propertyChainAxiom rdf:parseType="Collection">
             <rdf:Description rdf:about="http://vocab.phenoscape.org/involves"/>
-            <rdf:Description rdf:about="&obo;RO_0002202"/>
+            <rdf:Description rdf:about="&obo;BFO_0000050"/>
         </owl:propertyChainAxiom>
         <owl:propertyChainAxiom rdf:parseType="Collection">
             <rdf:Description rdf:about="http://vocab.phenoscape.org/involves"/>
-            <rdf:Description rdf:about="&obo;BFO_0000050"/>
+            <rdf:Description rdf:about="&obo;RO_0002314"/>
+        </owl:propertyChainAxiom>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://vocab.phenoscape.org/involves"/>
+            <rdf:Description rdf:about="&obo;BFO_0000052"/>
         </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
