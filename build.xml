@@ -147,6 +147,7 @@
 		<mkdir dir="${human.downloads}" />
 		<mkdir dir="${xenbase.downloads}" />
 		<mkdir dir="${kb}" />
+		<mkdir dir="${kb-closure}" />
 	</target>
 
 	<target name="download-iao-metadata" depends="init">
@@ -733,9 +734,9 @@
 	</target>
 
 	<target name="materialize-class-hierarchy-closure">
-		<java classname="org.phenoscape.owl.MaterializeSubClassOfClosure" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
+		<java classname="org.phenoscape.owl.MaterializeSubClassOfClosureToNTriples" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
 			<arg value="${kb}/${phenoscape-tbox.encoded}" />
-			<sysproperty key="org.phenoscape.owl.MaterializeSubClassOfClosure.target" value="${kb-closure}/hierarchy_closure.owl" />
+			<sysproperty key="org.phenoscape.owl.MaterializeSubClassOfClosure.target" value="${kb-closure}/hierarchy_closure.nt" />
 			<sysproperty key="java.library.path" value="lib" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 		</java>
@@ -774,7 +775,8 @@
 				<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="6g" failonerror="true">
 					<arg value="@{file}.owl" />
 					<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
-					<sysproperty key="org.phenoscape.owl.reasoner" value="trowl" />
+					<!-- <sysproperty key="org.phenoscape.owl.reasoner" value="trowl" /> -->
+					<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
 					<sysproperty key="entityExpansionLimit" value="9999999" />
 				</java>
 				<copy file="@{file}.owl" todir="${kb}" preservelastmodified="true" />
@@ -817,6 +819,25 @@
 					<arg value="${atsign}@{file}" />
 					<arg value="--header" />
 					<arg value="Content-Type:application/rdf+xml" />
+					<arg value="http://localhost:8080/bigdata/sparql?context-uri=http://kb.phenoscape.org/closure" />
+				</exec>
+			</sequential>
+		</for>
+		<for param="file" parallel="false">
+			<path>
+				<fileset dir="${kb-closure}">
+					<include name="*.nt" />
+					<exclude name="**/catalog-v001.xml" />
+				</fileset>
+			</path>
+			<sequential>
+				<exec executable="curl" failonerror="true">
+					<arg value="-X" />
+					<arg value="POST" />
+					<arg value="-d" />
+					<arg value="${atsign}@{file}" />
+					<arg value="--header" />
+					<arg value="Content-Type:text/plain" />
 					<arg value="http://localhost:8080/bigdata/sparql?context-uri=http://kb.phenoscape.org/closure" />
 				</exec>
 			</sequential>
@@ -967,7 +988,7 @@
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
 		</java>
-		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="16g" failonerror="true">
 			<arg value="${kb}/${xenbase-expression.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
@@ -1031,6 +1052,7 @@
 
 	<target name="materialize-for-fewer-classes" depends="normalize-uberon-merged,normalize-phenoscape-ext,normalize-pato,normalize-bspo,
 		normalize-go,normalize-zfa,normalize-zfa-bridge,normalize-xao,normalize-xao-bridge,normalize-hpo,
+	generate-partof-uberon-merged,generate-partof-phenoscape-ext,
 		generate-involves-uberon-merged,generate-involves-phenoscape-ext,generate-involves-pato">
 		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
 			<arg value="${kb}/${phenoscape-tbox.encoded}" />
@@ -1041,8 +1063,8 @@
 		</java>
 	</target>
 
-	<target name="build-all-fewer-classes" description="" depends="download-ontologies,materialize-for-fewer-classes,zfin-expression-to-owl,zfin-phenotypes-to-owl,zfin-genes-to-owl,
-		human-phenotypes-to-owl,mgi-genes-to-owl,mgi-expression-to-owl,
-		xenbase-genes-to-owl,xenbase-expression-to-owl" />
+	<target name="build-all-fewer-classes" description="" depends="download-ontologies,materialize-for-fewer-classes,mod-data-to-owl,generate-individuals-vto,materialize-class-hierarchy-closure,materialize-individuals-vto" />
+	
+	<target name="everything" depends="build-all-fewer-classes,checkout-nexml,nexml-to-owl,load-bigdata"/>
 
 </project>
