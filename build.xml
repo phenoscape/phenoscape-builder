@@ -1065,6 +1065,6 @@
 
 	<target name="build-all-fewer-classes" description="" depends="download-ontologies,materialize-for-fewer-classes,mod-data-to-owl,generate-individuals-vto,materialize-class-hierarchy-closure,materialize-individuals-vto" />
 	
-	<target name="everything" depends="build-all-fewer-classes,checkout-nexml,nexml-to-owl,load-bigdata"/>
+	<target name="everything" depends="build-all-fewer-classes,checkout-nexml,nexml-to-owl"/>
 
 </project>
