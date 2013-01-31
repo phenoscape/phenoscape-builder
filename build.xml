@@ -772,11 +772,11 @@
 					<arg value="@{file}.owl" />
 					<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 				</java>
-				<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="6g" failonerror="true">
+				<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
 					<arg value="@{file}.owl" />
 					<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
-					<!-- <sysproperty key="org.phenoscape.owl.reasoner" value="trowl" /> -->
-					<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
+					 <sysproperty key="org.phenoscape.owl.reasoner" value="trowl" /> 
+				<!--	<sysproperty key="org.phenoscape.owl.reasoner" value="elk" /> -->
 					<sysproperty key="entityExpansionLimit" value="9999999" />
 				</java>
 				<copy file="@{file}.owl" todir="${kb}" preservelastmodified="true" />
