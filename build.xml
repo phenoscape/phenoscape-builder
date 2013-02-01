@@ -775,8 +775,8 @@
 				<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
 					<arg value="@{file}.owl" />
 					<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
-					 <sysproperty key="org.phenoscape.owl.reasoner" value="trowl" /> 
-				<!--	<sysproperty key="org.phenoscape.owl.reasoner" value="elk" /> -->
+					<sysproperty key="org.phenoscape.owl.reasoner" value="trowl" />
+					<!--	<sysproperty key="org.phenoscape.owl.reasoner" value="elk" /> -->
 					<sysproperty key="entityExpansionLimit" value="9999999" />
 				</java>
 				<copy file="@{file}.owl" todir="${kb}" preservelastmodified="true" />
@@ -801,6 +801,161 @@
 					<arg value="--header" />
 					<arg value="Content-Type:application/rdf+xml" />
 					<arg value="http://localhost:8080/bigdata/sparql?context-uri=http://kb.phenoscape.org/" />
+				</exec>
+			</sequential>
+		</for>
+		<for param="file" parallel="false">
+			<path>
+				<fileset dir="${kb-closure}">
+					<include name="*.owl" />
+					<exclude name="**/catalog-v001.xml" />
+				</fileset>
+			</path>
+			<sequential>
+				<exec executable="curl" failonerror="true">
+					<arg value="-X" />
+					<arg value="POST" />
+					<arg value="-d" />
+					<arg value="${atsign}@{file}" />
+					<arg value="--header" />
+					<arg value="Content-Type:application/rdf+xml" />
+					<arg value="http://localhost:8080/bigdata/sparql?context-uri=http://kb.phenoscape.org/closure" />
+				</exec>
+			</sequential>
+		</for>
+		<for param="file" parallel="false">
+			<path>
+				<fileset dir="${kb-closure}">
+					<include name="*.nt" />
+					<exclude name="**/catalog-v001.xml" />
+				</fileset>
+			</path>
+			<sequential>
+				<exec executable="curl" failonerror="true">
+					<arg value="-X" />
+					<arg value="POST" />
+					<arg value="-d" />
+					<arg value="${atsign}@{file}" />
+					<arg value="--header" />
+					<arg value="Content-Type:text/plain" />
+					<arg value="http://localhost:8080/bigdata/sparql?context-uri=http://kb.phenoscape.org/closure" />
+				</exec>
+			</sequential>
+		</for>
+	</target>
+
+	<target name="load-bigdata-graphs">
+		<for param="file" parallel="false">
+			<path>
+				<fileset dir="${kb}/tbox">
+					<include name="*.owl" />
+					<exclude name="**/catalog-v001.xml" />
+				</fileset>
+			</path>
+			<sequential>
+				<exec executable="curl" failonerror="true">
+					<arg value="-X" />
+					<arg value="POST" />
+					<arg value="-d" />
+					<arg value="${atsign}@{file}" />
+					<arg value="--header" />
+					<arg value="Content-Type:application/rdf+xml" />
+					<arg value="http://localhost:8080/bigdata/sparql?context-uri=http://kb.phenoscape.org/tbox" />
+				</exec>
+			</sequential>
+		</for>
+		<for param="file" parallel="false">
+			<path>
+				<fileset dir="${kb}/evo">
+					<include name="*.owl" />
+					<exclude name="**/catalog-v001.xml" />
+				</fileset>
+			</path>
+			<sequential>
+				<exec executable="curl" failonerror="true">
+					<arg value="-X" />
+					<arg value="POST" />
+					<arg value="-d" />
+					<arg value="${atsign}@{file}" />
+					<arg value="--header" />
+					<arg value="Content-Type:application/rdf+xml" />
+					<arg value="http://localhost:8080/bigdata/sparql?context-uri=http://kb.phenoscape.org/evo" />
+				</exec>
+			</sequential>
+		</for>
+		<for param="file" parallel="false">
+			<path>
+				<fileset dir="${kb}/human">
+					<include name="*.owl" />
+					<exclude name="**/catalog-v001.xml" />
+				</fileset>
+			</path>
+			<sequential>
+				<exec executable="curl" failonerror="true">
+					<arg value="-X" />
+					<arg value="POST" />
+					<arg value="-d" />
+					<arg value="${atsign}@{file}" />
+					<arg value="--header" />
+					<arg value="Content-Type:application/rdf+xml" />
+					<arg value="http://localhost:8080/bigdata/sparql?context-uri=http://kb.phenoscape.org/human" />
+				</exec>
+			</sequential>
+		</for>
+		<for param="file" parallel="false">
+			<path>
+				<fileset dir="${kb}/mgi">
+					<include name="*.owl" />
+					<exclude name="**/catalog-v001.xml" />
+				</fileset>
+			</path>
+			<sequential>
+				<exec executable="curl" failonerror="true">
+					<arg value="-X" />
+					<arg value="POST" />
+					<arg value="-d" />
+					<arg value="${atsign}@{file}" />
+					<arg value="--header" />
+					<arg value="Content-Type:application/rdf+xml" />
+					<arg value="http://localhost:8080/bigdata/sparql?context-uri=http://kb.phenoscape.org/mgi" />
+				</exec>
+			</sequential>
+		</for>
+		<for param="file" parallel="false">
+			<path>
+				<fileset dir="${kb}/xenbase">
+					<include name="*.owl" />
+					<exclude name="**/catalog-v001.xml" />
+				</fileset>
+			</path>
+			<sequential>
+				<exec executable="curl" failonerror="true">
+					<arg value="-X" />
+					<arg value="POST" />
+					<arg value="-d" />
+					<arg value="${atsign}@{file}" />
+					<arg value="--header" />
+					<arg value="Content-Type:application/rdf+xml" />
+					<arg value="http://localhost:8080/bigdata/sparql?context-uri=http://kb.phenoscape.org/xenbase" />
+				</exec>
+			</sequential>
+		</for>
+		<for param="file" parallel="false">
+			<path>
+				<fileset dir="${kb}/zfin">
+					<include name="*.owl" />
+					<exclude name="**/catalog-v001.xml" />
+				</fileset>
+			</path>
+			<sequential>
+				<exec executable="curl" failonerror="true">
+					<arg value="-X" />
+					<arg value="POST" />
+					<arg value="-d" />
+					<arg value="${atsign}@{file}" />
+					<arg value="--header" />
+					<arg value="Content-Type:application/rdf+xml" />
+					<arg value="http://localhost:8080/bigdata/sparql?context-uri=http://kb.phenoscape.org/zfin" />
 				</exec>
 			</sequential>
 		</for>
@@ -1064,7 +1219,7 @@
 	</target>
 
 	<target name="build-all-fewer-classes" description="" depends="download-ontologies,materialize-for-fewer-classes,mod-data-to-owl,generate-individuals-vto,materialize-class-hierarchy-closure,materialize-individuals-vto" />
-	
-	<target name="everything" depends="build-all-fewer-classes,checkout-nexml,nexml-to-owl"/>
+
+	<target name="everything" depends="build-all-fewer-classes,checkout-nexml,nexml-to-owl" />
 
 </project>
