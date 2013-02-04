@@ -262,7 +262,8 @@
 		</java>
 		<java classname="org.obolibrary.cli.OBORunner" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
 			<arg value="--allow-dangling" />
-			<arg value="${ontology.downloads}/${hp-equivalence-axioms.encoded}" />
+			<arg value="ontologies/${hp-equivalence-axioms.encoded}" />
+			<!--	<arg value="${ontology.downloads}/${hp-equivalence-axioms.encoded}" /> -->
 			<arg value="-o" />
 			<arg value="${kb}/${hp-logical-definitions.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
