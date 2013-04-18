@@ -752,7 +752,7 @@
 	</target>
 
 	<!-- depends="checkout-nexml" -->
-	<target name="nexml-to-owl">
+	<target name="nexml-to-owl" depends="download-ontologies">
 		<for param="file" parallel="true" threadCount="5">
 			<path>
 				<fileset dir="${nexml}/completed-phenex-files">
@@ -1222,5 +1222,26 @@
 	<target name="build-all-fewer-classes" description="" depends="download-ontologies,materialize-for-fewer-classes,mod-data-to-owl,generate-individuals-vto,materialize-class-hierarchy-closure,materialize-individuals-vto" />
 
 	<target name="everything" depends="build-all-fewer-classes,checkout-nexml,nexml-to-owl" />
+
+	<target name="generate-matrix" depends="download-ontologies,checkout-nexml,nexml-to-owl">
+		<java classname="org.phenoscape.owl.MergeOntologies" classpathref="jarsclasspath" fork="true" maxmemory="20g" failonerror="true">
+			<mkdir dir="${staging}/analyses/matrix" />
+			<arg value="${staging}/analyses/matrix/alldata.owl" />
+			<arg value="${kb}" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+			<sysproperty key="entityExpansionLimit" value="9999999" />
+			<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
+		</java>
+		<java classname="org.phenoscape.owl.MergeOntologies" classpathref="jarsclasspath" fork="true" maxmemory="20g" failonerror="true">
+			<mkdir dir="${staging}/analyses/matrix" />
+			<arg value="${staging}/analyses/matrix/alldata.owl" />
+			<arg value="${staging}/analyses/matrix/state_groups.owl" />
+			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+			<sysproperty key="java.library.path" value="lib" />
+			<sysproperty key="entityExpansionLimit" value="9999999" />
+			<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
+		</java>
+	</target>
 
 </project>
