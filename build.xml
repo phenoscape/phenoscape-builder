@@ -30,6 +30,7 @@
 	<taskdef name="checkimports" classname="org.phenoscape.owl.CheckImportsTask">
 		<classpath refid="project.classpath" />
 	</taskdef>
+	<property name="maxmem" value="20G"/>
 	<property name="atsign" value="@" />
 	<property name="build_date" value="${NOW}" />
 	<property name="avoid.downloads" value="true" />
@@ -254,13 +255,13 @@
 	</target>
 
 	<target name="normalize-hpo" depends="download-hpo">
-		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${ontology.downloads}/${hp.encoded}" />
 			<arg value="${kb}/${hp.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
 		</java>
-		<java classname="org.obolibrary.cli.OBORunner" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.obolibrary.cli.OBORunner" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="--allow-dangling" />
 			<arg value="ontologies/${hp-equivalence-axioms.encoded}" />
 			<!--	<arg value="${ontology.downloads}/${hp-equivalence-axioms.encoded}" /> -->
@@ -269,13 +270,13 @@
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="entityExpansionLimit" value="9999999" />
 		</java>
-		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${hp-logical-definitions.encoded}" />
 			<arg value="${kb}/${hp-logical-definitions.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
 		</java>
-		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${ontology.downloads}/${fma-bridge.encoded}" />
 			<arg value="${kb}/${fma-bridge.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -284,7 +285,7 @@
 	</target>
 
 	<target name="generate-involves-hpo" depends="normalize-hpo">
-		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${hp.encoded}" />
 			<arg value="http://vocab.phenoscape.org/involves" />
 			<arg value="${kb}/${involves.hp.encoded}" />
@@ -351,7 +352,7 @@
 	</target>
 
 	<target name="normalize-vto" depends="download-ontologies">
-		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${ontology.downloads}/${vto.encoded}" />
 			<arg value="${kb}/${vto.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -361,7 +362,7 @@
 	</target>
 
 	<target name="normalize-uberon-merged" depends="download-ontologies,normalize-pato,normalize-bspo">
-		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${ontology.downloads}/${uberon-merged.encoded}" />
 			<arg value="${kb}/${uberon-merged.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -370,7 +371,7 @@
 	</target>
 
 	<target name="normalize-phenoscape-ext" depends="download-ontologies,normalize-pato,normalize-bspo,normalize-uberon-merged">
-		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${ontology.downloads}/${phenoscape-ext.encoded}" />
 			<arg value="${kb}/${phenoscape-ext.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -379,7 +380,7 @@
 	</target>
 
 	<target name="normalize-zfa" depends="download-ontologies">
-		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${ontology.downloads}/${zfa.encoded}" />
 			<arg value="${kb}/${zfa.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -388,7 +389,7 @@
 	</target>
 
 	<target name="normalize-zfa-bridge" depends="download-ontologies">
-		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${ontology.downloads}/${zfa-bridge.encoded}" />
 			<arg value="${kb}/${zfa-bridge.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -397,7 +398,7 @@
 	</target>
 
 	<target name="normalize-xao" depends="download-ontologies">
-		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${ontology.downloads}/${xao.encoded}" />
 			<arg value="${kb}/${xao.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -406,7 +407,7 @@
 	</target>
 
 	<target name="normalize-xao-bridge" depends="download-ontologies">
-		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${ontology.downloads}/${xao-bridge.encoded}" />
 			<arg value="${kb}/${xao-bridge.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -423,7 +424,7 @@
 		generate-involves-phenoscape-ext,generate-involves-go,generate-involves-pato,generate-partof-zfa,generate-haspart-zfa,
 		generate-involves-zfa,generate-absent-zfa,generate-zfa-develops-from-rules,generate-partof-xao,generate-haspart-xao,
 		generate-involves-xao,generate-absent-xao,generate-xao-develops-from-rules,generate-involves-hpo">
-		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${phenoscape-tbox.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
@@ -433,14 +434,14 @@
 	</target>
 
 	<target name="assert-negation-hierarchy-phenoscape-tbox" depends="materialize-phenoscape-tbox">
-		<java classname="org.phenoscape.owl.NegationHierarchyAsserter" classpathref="jarsclasspath" fork="true" maxmemory="8g" failonerror="true">
+		<java classname="org.phenoscape.owl.NegationHierarchyAsserter" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${phenoscape-tbox.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 		</java>
 	</target>
 
 	<target name="normalize-go" depends="download-ontologies">
-		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${ontology.downloads}/${go.encoded}" />
 			<arg value="${kb}/${go.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -449,7 +450,7 @@
 	</target>
 
 	<target name="normalize-pato" depends="download-ontologies">
-		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${ontology.downloads}/${pato.encoded}" />
 			<arg value="${kb}/${pato.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -458,7 +459,7 @@
 	</target>
 
 	<target name="normalize-bspo" depends="download-ontologies">
-		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${ontology.downloads}/${bspo.encoded}" />
 			<arg value="${kb}/${bspo.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -467,14 +468,14 @@
 	</target>
 
 	<target name="generate-individuals-vto" depends="normalize-vto">
-		<java classname="org.phenoscape.owl.TaxonomyConverter" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.TaxonomyConverter" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${vto.encoded}" />
 			<arg value="${kb}/${individuals.vto.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
 			<sysproperty key="entityExpansionLimit" value="9999999" />
 		</java>
-		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${individuals.vto.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
@@ -482,7 +483,7 @@
 	</target>
 
 	<target name="materialize-individuals-vto" depends="generate-individuals-vto">
-		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${individuals.vto.encoded}" />
 			<arg value="${kb-closure}/materialized_${individuals.vto.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -493,7 +494,7 @@
 	</target>
 
 	<target name="generate-partof-uberon-merged" depends="normalize-uberon-merged">
-		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${uberon-merged.encoded}" />
 			<arg value="http://purl.obolibrary.org/obo/BFO_0000050" />
 			<arg value="${kb}/${partof.uberon-merged.encoded}" />
@@ -503,7 +504,7 @@
 	</target>
 
 	<target name="generate-involves-uberon-merged" depends="normalize-uberon-merged">
-		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${uberon-merged.encoded}" />
 			<arg value="http://vocab.phenoscape.org/involves" />
 			<arg value="${kb}/${involves.uberon-merged.encoded}" />
@@ -513,7 +514,7 @@
 	</target>
 
 	<target name="generate-haspart-uberon-merged" depends="normalize-uberon-merged">
-		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${uberon-merged.encoded}" />
 			<arg value="http://purl.obolibrary.org/obo/BFO_0000051" />
 			<arg value="${kb}/${haspart.uberon-merged.encoded}" />
@@ -523,7 +524,7 @@
 	</target>
 
 	<target name="generate-partof-phenoscape-ext" depends="normalize-phenoscape-ext">
-		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${phenoscape-ext.encoded}" />
 			<arg value="http://purl.obolibrary.org/obo/BFO_0000050" />
 			<arg value="${kb}/${partof.phenoscape-ext.encoded}" />
@@ -533,7 +534,7 @@
 	</target>
 
 	<target name="generate-haspart-phenoscape-ext" depends="normalize-phenoscape-ext">
-		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${phenoscape-ext.encoded}" />
 			<arg value="http://purl.obolibrary.org/obo/BFO_0000051" />
 			<arg value="${kb}/${haspart.phenoscape-ext.encoded}" />
@@ -543,7 +544,7 @@
 	</target>
 
 	<target name="generate-involves-phenoscape-ext" depends="normalize-phenoscape-ext">
-		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${phenoscape-ext.encoded}" />
 			<arg value="http://vocab.phenoscape.org/involves" />
 			<arg value="${kb}/${involves.phenoscape-ext.encoded}" />
@@ -553,7 +554,7 @@
 	</target>
 
 	<target name="generate-partof-go" depends="normalize-go">
-		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${go.encoded}" />
 			<arg value="http://purl.obolibrary.org/obo/BFO_0000050" />
 			<arg value="${kb}/${partof.go.encoded}" />
@@ -563,7 +564,7 @@
 	</target>
 
 	<target name="generate-haspart-go" depends="normalize-go">
-		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${go.encoded}" />
 			<arg value="http://purl.obolibrary.org/obo/BFO_0000051" />
 			<arg value="${kb}/${haspart.go.encoded}" />
@@ -573,7 +574,7 @@
 	</target>
 
 	<target name="generate-involves-go" depends="normalize-go">
-		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${go.encoded}" />
 			<arg value="http://vocab.phenoscape.org/involves" />
 			<arg value="${kb}/${involves.go.encoded}" />
@@ -583,7 +584,7 @@
 	</target>
 
 	<target name="generate-bearerof-pato" depends="normalize-pato">
-		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${pato.encoded}" />
 			<arg value="http://purl.obolibrary.org/obo/BFO_0000053" />
 			<arg value="${kb}/${bearerof.pato.encoded}" />
@@ -593,7 +594,7 @@
 	</target>
 
 	<target name="generate-involves-pato" depends="normalize-pato">
-		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${pato.encoded}" />
 			<arg value="http://vocab.phenoscape.org/involves" />
 			<arg value="${kb}/${involves.pato.encoded}" />
@@ -603,7 +604,7 @@
 	</target>
 
 	<target name="generate-partof-zfa" depends="normalize-zfa">
-		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${zfa.encoded}" />
 			<arg value="http://purl.obolibrary.org/obo/BFO_0000050" />
 			<arg value="${kb}/${partof.zfa.encoded}" />
@@ -613,7 +614,7 @@
 	</target>
 
 	<target name="generate-involves-zfa" depends="normalize-zfa">
-		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${zfa.encoded}" />
 			<arg value="http://vocab.phenoscape.org/involves" />
 			<arg value="${kb}/${involves.zfa.encoded}" />
@@ -623,7 +624,7 @@
 	</target>
 
 	<target name="generate-haspart-zfa" depends="normalize-zfa">
-		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${zfa.encoded}" />
 			<arg value="http://purl.obolibrary.org/obo/BFO_0000051" />
 			<arg value="${kb}/${haspart.zfa.encoded}" />
@@ -633,7 +634,7 @@
 	</target>
 
 	<target name="generate-absent-zfa" depends="normalize-zfa">
-		<java classname="org.phenoscape.owl.NegationClassGenerator" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.NegationClassGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${haspart.zfa.encoded}" />
 			<arg value="${kb}/${absent.zfa.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -641,7 +642,7 @@
 	</target>
 
 	<target name="generate-partof-xao" depends="normalize-xao">
-		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${xao.encoded}" />
 			<arg value="http://purl.obolibrary.org/obo/BFO_0000050" />
 			<arg value="${kb}/${partof.xao.encoded}" />
@@ -651,7 +652,7 @@
 	</target>
 
 	<target name="generate-involves-xao" depends="normalize-xao">
-		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${xao.encoded}" />
 			<arg value="http://vocab.phenoscape.org/involves" />
 			<arg value="${kb}/${involves.xao.encoded}" />
@@ -661,7 +662,7 @@
 	</target>
 
 	<target name="generate-haspart-xao" depends="normalize-xao">
-		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.NamedRestrictionGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${xao.encoded}" />
 			<arg value="http://purl.obolibrary.org/obo/BFO_0000051" />
 			<arg value="${kb}/${haspart.xao.encoded}" />
@@ -671,7 +672,7 @@
 	</target>
 
 	<target name="generate-absent-xao" depends="normalize-xao">
-		<java classname="org.phenoscape.owl.NegationClassGenerator" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.NegationClassGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${haspart.xao.encoded}" />
 			<arg value="${kb}/${absent.xao.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -679,7 +680,7 @@
 	</target>
 
 	<target name="generate-xao-develops-from-rules" depends="generate-absent-xao">
-		<java classname="org.phenoscape.owl.ReverseDevelopsFromRuleGenerator" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.ReverseDevelopsFromRuleGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${xao.encoded}" />
 			<arg value="${kb}/${developsfrom.xao.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -687,7 +688,7 @@
 	</target>
 
 	<target name="generate-absent-uberon-merged" depends="normalize-uberon-merged">
-		<java classname="org.phenoscape.owl.NegationClassGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.NegationClassGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${haspart.uberon-merged.encoded}" />
 			<arg value="${kb}/${absent.uberon-merged.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -695,7 +696,7 @@
 	</target>
 
 	<target name="generate-absent-phenoscape-ext" depends="normalize-phenoscape-ext">
-		<java classname="org.phenoscape.owl.NegationClassGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.NegationClassGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${haspart.phenoscape-ext.encoded}" />
 			<arg value="${kb}/${absent.phenoscape-ext.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -703,7 +704,7 @@
 	</target>
 
 	<target name="generate-absent-go" depends="normalize-go">
-		<java classname="org.phenoscape.owl.NegationClassGenerator" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.NegationClassGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${go.encoded}" />
 			<arg value="${kb}/${absent.go.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -711,7 +712,7 @@
 	</target>
 
 	<target name="generate-uberon-merged-develops-from-rules" depends="generate-absent-uberon-merged">
-		<java classname="org.phenoscape.owl.ReverseDevelopsFromRuleGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.ReverseDevelopsFromRuleGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${uberon-merged.encoded}" />
 			<arg value="${kb}/${developsfrom.uberon-merged.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -719,7 +720,7 @@
 	</target>
 
 	<target name="generate-phenoscape-ext-develops-from-rules" depends="generate-absent-phenoscape-ext">
-		<java classname="org.phenoscape.owl.ReverseDevelopsFromRuleGenerator" classpathref="jarsclasspath" fork="true" maxmemory="2048m" failonerror="true">
+		<java classname="org.phenoscape.owl.ReverseDevelopsFromRuleGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${phenoscape-ext.encoded}" />
 			<arg value="${kb}/${developsfrom.phenoscape-ext.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -727,7 +728,7 @@
 	</target>
 
 	<target name="generate-zfa-develops-from-rules" depends="generate-absent-zfa">
-		<java classname="org.phenoscape.owl.ReverseDevelopsFromRuleGenerator" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.ReverseDevelopsFromRuleGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${zfa.encoded}" />
 			<arg value="${kb}/${developsfrom.zfa.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -735,7 +736,7 @@
 	</target>
 
 	<target name="materialize-class-hierarchy-closure">
-		<java classname="org.phenoscape.owl.MaterializeSubClassOfClosureToNTriples" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
+		<java classname="org.phenoscape.owl.MaterializeSubClassOfClosureToNTriples" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${phenoscape-tbox.encoded}" />
 			<sysproperty key="org.phenoscape.owl.MaterializeSubClassOfClosure.target" value="${kb-closure}/hierarchy_closure.nt" />
 			<sysproperty key="java.library.path" value="lib" />
@@ -765,15 +766,15 @@
 				</fileset>
 			</path>
 			<sequential>
-				<java classname="org.phenoscape.owl.PhenexToOWL" classpathref="jarsclasspath" fork="true" maxmemory="3g" failonerror="true">
+				<java classname="org.phenoscape.owl.PhenexToOWL" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 					<arg value="@{file}" />
 					<arg value="@{file}.owl" />
 				</java>
-				<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="3g" failonerror="true">
+				<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 					<arg value="@{file}.owl" />
 					<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 				</java>
-				<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
+				<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 					<arg value="@{file}.owl" />
 					<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 					<!-- <sysproperty key="org.phenoscape.owl.reasoner" value="trowl" /> -->
@@ -1002,17 +1003,17 @@
 
 	<target name="zfin-expression-to-owl" depends="init">
 		<get src="http://zfin.org/downloads/wildtype-expression.txt" dest="${zfin.downloads}/zfin-expression.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
-		<java classname="org.phenoscape.owl.mod.zfin.ZFINExpressionToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.mod.zfin.ZFINExpressionToOWL" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${zfin.downloads}/zfin-expression.txt" />
 			<arg value="${kb}/${zfin-expression.encoded}" />
 		</java>
-		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${zfin-expression.encoded}" />
 			<arg value="${kb}/${zfin-expression.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
 		</java>
-		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${zfin-expression.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
@@ -1022,16 +1023,16 @@
 	</target>
 
 	<target name="zfin-phenotypes-to-owl" depends="init">
-		<java classname="org.phenoscape.owl.mod.zfin.ZFINPhenotypesToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.mod.zfin.ZFINPhenotypesToOWL" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="ontologies/zfin-phenotypes-prelim.txt" />
 			<arg value="${kb}/${zfin-phenotypes.encoded}" />
 		</java>
-		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${zfin-phenotypes.encoded}" />
 			<arg value="${kb}/${zfin-phenotypes.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 		</java>
-		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${zfin-phenotypes.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
@@ -1042,12 +1043,12 @@
 
 	<target name="zfin-genes-to-owl" depends="init">
 		<get src="http://zfin.org/downloads/genetic_markers.txt" dest="${zfin.downloads}/zfin-genetic-markers.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
-		<java classname="org.phenoscape.owl.mod.zfin.ZFINGeneticMarkersToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.mod.zfin.ZFINGeneticMarkersToOWL" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${zfin.downloads}/zfin-genetic-markers.txt" />
 			<arg value="${kb}/${zfin-genes.encoded}" />
 		</java>
 		<get src="http://zfin.org/downloads/aliases.txt" dest="${zfin.downloads}/zfin-aliases.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
-		<java classname="org.phenoscape.owl.mod.zfin.ZFINPreviousGeneNamesToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.mod.zfin.ZFINPreviousGeneNamesToOWL" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${zfin.downloads}/zfin-aliases.txt" />
 			<arg value="${kb}/${zfin-previous-names.encoded}" />
 		</java>
@@ -1055,16 +1056,16 @@
 
 	<target name="human-phenotypes-to-owl" depends="init">
 		<get src="http://compbio.charite.de/hudson/job/hpo.annotations.monthly/lastStableBuild/artifact/annotation/genes_to_phenotype.txt" dest="${human.downloads}/human-phenotype-annotations.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
-		<java classname="org.phenoscape.owl.mod.human.HumanPhenotypesToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.mod.human.HumanPhenotypesToOWL" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${human.downloads}/human-phenotype-annotations.txt" />
 			<arg value="${kb}/${human-phenotypes.encoded}" />
 		</java>
-		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${human-phenotypes.encoded}" />
 			<arg value="${kb}/${human-phenotypes.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 		</java>
-		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${human-phenotypes.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
@@ -1075,24 +1076,24 @@
 
 	<target name="mgi-genes-to-owl" depends="init">
 		<get src="ftp://ftp.informatics.jax.org/pub/reports/MRK_List2.rpt" dest="${mgi.downloads}/mgi-genetic-markers.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
-		<java classname="org.phenoscape.owl.mod.mgi.MGIGeneticMarkersToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.mod.mgi.MGIGeneticMarkersToOWL" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${mgi.downloads}/mgi-genetic-markers.txt" />
 			<arg value="${kb}/${mgi-genes.encoded}" />
 		</java>
 	</target>
 
 	<target name="mgi-expression-to-owl" depends="init">
-		<java classname="org.phenoscape.owl.mod.mgi.MGIExpressionToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.mod.mgi.MGIExpressionToOWL" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="ontologies/GXD_limb_20130109.txt" />
 			<arg value="${kb}/${mgi-expression.encoded}" />
 		</java>
-		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${mgi-expression.encoded}" />
 			<arg value="${kb}/${mgi-expression.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
 		</java>
-		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${mgi-expression.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
@@ -1102,16 +1103,16 @@
 	</target>
 
 	<target name="mgi-phenotypes-to-owl" depends="init">
-		<java classname="org.phenoscape.owl.mod.mgi.MGIPhenotypesToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.mod.mgi.MGIPhenotypesToOWL" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="ontologies/MGI_pheno_limb.txt" />
 			<arg value="${kb}/${mgi-phenotypes.encoded}" />
 		</java>
-		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${mgi-phenotypes.encoded}" />
 			<arg value="${kb}/${mgi-phenotypes.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 		</java>
-		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${mgi-phenotypes.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
@@ -1122,7 +1123,7 @@
 
 	<target name="xenbase-genes-to-owl" depends="init">
 		<get src="ftp://ftp.xenbase.org/pub/GenePageReports/GenePageGeneralInfo_ManuallyCurated.txt" dest="${xenbase.downloads}/xenbase-genes.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
-		<java classname="org.phenoscape.owl.mod.xenbase.XenbaseGenesToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.mod.xenbase.XenbaseGenesToOWL" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${xenbase.downloads}/xenbase-genes.txt" />
 			<arg value="${kb}/${xenbase-genes.encoded}" />
 		</java>
@@ -1132,19 +1133,19 @@
 		<get src="ftp://ftp.xenbase.org/pub/GenePageReports/GeneExpression_laevis.txt" dest="${xenbase.downloads}/laevis-expression.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
 		<get src="ftp://ftp.xenbase.org/pub//GenePageReports/GeneExpression_tropicalis.txt" dest="${xenbase.downloads}/tropicalis-expression.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
 		<get src="ftp://ftp.xenbase.org/pub/GenePageReports/XenbaseGenepageToGeneIdMapping.txt" dest="${xenbase.downloads}/genepage-gene-mappings.txt" usetimestamp="true" skipexisting="${avoid.downloads}" />
-		<java classname="org.phenoscape.owl.mod.xenbase.XenbaseExpressionToOWL" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.mod.xenbase.XenbaseExpressionToOWL" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${xenbase.downloads}/genepage-gene-mappings.txt" />
 			<arg value="${xenbase.downloads}/laevis-expression.txt" />
 			<arg value="${xenbase.downloads}/tropicalis-expression.txt" />
 			<arg value="${kb}/${xenbase-expression.encoded}" />
 		</java>
-		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${xenbase-expression.encoded}" />
 			<arg value="${kb}/${xenbase-expression.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
 		</java>
-		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="16g" failonerror="true">
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${xenbase-expression.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
@@ -1159,7 +1160,7 @@
 			<exclude name="**/catalog-v001.xml" />
 		</fileset>
 		<pathconvert property="report.file.args" refid="input_files" pathsep="' '" />
-		<java classname="org.phenoscape.owl.report.AnnotationReport" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.report.AnnotationReport" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<sysproperty key="entityExpansionLimit" value="9999999" />
 			<sysproperty key="org.phenoscape.owl.report.AnnotationReport.ontology" value="ontologies/phenoscape-sources-merged.owl" />
 			<sysproperty key="org.phenoscape.owl.report.AnnotationReport.output" value="report.txt" />
@@ -1174,7 +1175,7 @@
 		</fileset>
 		<pathconvert property="fish.report.file.args" refid="fish_files" pathsep="' '" />
 		<echo>Fish excluding tetrapodomorphs</echo>
-		<java classname="org.phenoscape.owl.report.AnnotationStatus" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.report.AnnotationStatus" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<sysproperty key="entityExpansionLimit" value="9999999" />
 			<arg line="'${fish.report.file.args}'" />
 		</java>
@@ -1184,7 +1185,7 @@
 		</fileset>
 		<pathconvert property="amphibian.report.file.args" refid="amphibian_files" pathsep="' '" />
 		<echo>Amphibians and transitional</echo>
-		<java classname="org.phenoscape.owl.report.AnnotationStatus" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.report.AnnotationStatus" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<sysproperty key="entityExpansionLimit" value="9999999" />
 			<arg line="'${amphibian.report.file.args}'" />
 		</java>
@@ -1194,7 +1195,7 @@
 		</fileset>
 		<pathconvert property="sereno.report.file.args" refid="sereno_files" pathsep="' '" />
 		<echo>Sereno Files</echo>
-		<java classname="org.phenoscape.owl.report.AnnotationStatus" classpathref="jarsclasspath" fork="true" maxmemory="4g" failonerror="true">
+		<java classname="org.phenoscape.owl.report.AnnotationStatus" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<sysproperty key="entityExpansionLimit" value="9999999" />
 			<arg line="'${sereno.report.file.args}'" />
 		</java>
@@ -1210,7 +1211,7 @@
 		normalize-go,normalize-zfa,normalize-zfa-bridge,normalize-xao,normalize-xao-bridge,normalize-hpo,
 	generate-partof-uberon-merged,generate-partof-phenoscape-ext,
 		generate-involves-uberon-merged,generate-involves-phenoscape-ext,generate-involves-pato">
-		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="12g" failonerror="true">
+		<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${kb}/${phenoscape-tbox.encoded}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
@@ -1224,7 +1225,7 @@
 	<target name="everything" depends="build-all-fewer-classes,checkout-nexml,nexml-to-owl" />
 
 	<target name="generate-matrix" depends="download-ontologies,checkout-nexml,nexml-to-owl">
-		<java classname="org.phenoscape.owl.MergeOntologies" classpathref="jarsclasspath" fork="true" maxmemory="20g" failonerror="true">
+		<java classname="org.phenoscape.owl.MergeOntologies" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<mkdir dir="${staging}/analyses/matrix" />
 			<arg value="${staging}/analyses/matrix/alldata.owl" />
 			<arg value="${kb}" />
@@ -1233,7 +1234,7 @@
 			<sysproperty key="entityExpansionLimit" value="9999999" />
 			<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
 		</java>
-		<java classname="org.phenoscape.owl.MergeOntologies" classpathref="jarsclasspath" fork="true" maxmemory="20g" failonerror="true">
+		<java classname="org.phenoscape.owl.MergeOntologies" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<mkdir dir="${staging}/analyses/matrix" />
 			<arg value="${staging}/analyses/matrix/alldata.owl" />
 			<arg value="${staging}/analyses/matrix/state_groups.owl" />
