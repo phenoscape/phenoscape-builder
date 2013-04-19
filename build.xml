@@ -30,7 +30,7 @@
 	<taskdef name="checkimports" classname="org.phenoscape.owl.CheckImportsTask">
 		<classpath refid="project.classpath" />
 	</taskdef>
-	<property name="maxmem" value="20G"/>
+	<property name="maxmem" value="20G" />
 	<property name="atsign" value="@" />
 	<property name="build_date" value="${NOW}" />
 	<property name="avoid.downloads" value="true" />
@@ -1225,8 +1225,8 @@
 	<target name="everything" depends="build-all-fewer-classes,checkout-nexml,nexml-to-owl" />
 
 	<target name="generate-matrix" depends="download-ontologies,checkout-nexml,nexml-to-owl">
+		<mkdir dir="${staging}/analyses/matrix" />
 		<java classname="org.phenoscape.owl.MergeOntologies" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
-			<mkdir dir="${staging}/analyses/matrix" />
 			<arg value="${staging}/analyses/matrix/alldata.owl" />
 			<arg value="${kb}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
@@ -1235,7 +1235,6 @@
 			<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
 		</java>
 		<java classname="org.phenoscape.owl.MergeOntologies" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
-			<mkdir dir="${staging}/analyses/matrix" />
 			<arg value="${staging}/analyses/matrix/alldata.owl" />
 			<arg value="${staging}/analyses/matrix/state_groups.owl" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
