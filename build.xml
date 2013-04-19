@@ -1234,7 +1234,7 @@
 			<sysproperty key="entityExpansionLimit" value="9999999" />
 			<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
 		</java>
-		<java classname="org.phenoscape.owl.MergeOntologies" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
+		<java classname="org.phenoscape.owl.MatrixGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${staging}/analyses/matrix/alldata.owl" />
 			<arg value="${staging}/analyses/matrix/state_groups.owl" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
