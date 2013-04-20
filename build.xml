@@ -1224,7 +1224,7 @@
 
 	<target name="everything" depends="build-all-fewer-classes,checkout-nexml,nexml-to-owl" />
 
-	<target name="generate-matrix" depends="download-ontologies,checkout-nexml,nexml-to-owl">
+	<target name="generate-matrix" depends="download-ontologies,normalize-phenoscape-ext,checkout-nexml,nexml-to-owl">
 		<mkdir dir="${staging}/analyses/matrix" />
 		<java classname="org.phenoscape.owl.MergeOntologies" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
 			<arg value="${staging}/analyses/matrix/alldata.owl" />
