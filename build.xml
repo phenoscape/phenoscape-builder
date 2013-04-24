@@ -802,7 +802,7 @@
 					<arg value="${atsign}@{file}" />
 					<arg value="--header" />
 					<arg value="Content-Type:application/rdf+xml" />
-					<arg value="http://localhost:8080/bigdata/sparql?context-uri=http://kb.phenoscape.org/" />
+					<arg value="http://localhost:8080/bigdata/sparql?context-uri=%3Chttp://kb.phenoscape.org/%3E" />
 				</exec>
 			</sequential>
 		</for>
@@ -821,7 +821,7 @@
 					<arg value="${atsign}@{file}" />
 					<arg value="--header" />
 					<arg value="Content-Type:application/rdf+xml" />
-					<arg value="http://localhost:8080/bigdata/sparql?context-uri=http://kb.phenoscape.org/closure" />
+					<arg value="http://localhost:8080/bigdata/sparql?context-uri=%3Chttp://kb.phenoscape.org/closure%3E" />
 				</exec>
 			</sequential>
 		</for>
