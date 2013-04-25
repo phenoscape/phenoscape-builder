@@ -31,6 +31,7 @@
 		<classpath refid="project.classpath" />
 	</taskdef>
 	<property name="maxmem" value="20G" />
+	<property name="parallel_size" value="6" />
 	<property name="atsign" value="@" />
 	<property name="build_date" value="${NOW}" />
 	<property name="avoid.downloads" value="true" />
@@ -779,6 +780,7 @@
 					<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 					<!-- <sysproperty key="org.phenoscape.owl.reasoner" value="trowl" /> -->
 					<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
+					<sysproperty key="elk.reasoner.number_of_workers" value="${parallel_size}" />
 					<sysproperty key="entityExpansionLimit" value="9999999" />
 				</java>
 				<copy file="@{file}.owl" todir="${kb}" preservelastmodified="true" />
@@ -1231,6 +1233,7 @@
 			<arg value="${kb}" />
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
+			<sysproperty key="elk.reasoner.number_of_workers" value="${parallel_size}" />
 			<sysproperty key="entityExpansionLimit" value="9999999" />
 			<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
 		</java>
@@ -1240,6 +1243,7 @@
 			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
 			<sysproperty key="java.library.path" value="lib" />
 			<sysproperty key="entityExpansionLimit" value="9999999" />
+			<sysproperty key="elk.reasoner.number_of_workers" value="${parallel_size}" />
 			<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
 		</java>
 	</target>
