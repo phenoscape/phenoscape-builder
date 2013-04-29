@@ -135,6 +135,9 @@
 	<urlencode property="individuals.vto.encoded" value="http://phenoscape.org/individuals/${vto}" />
 
 	<path id="jarsclasspath">
+		<dirset dir="lib">
+			<include name="*" />
+		</dirset>
 		<fileset dir="lib">
 			<include name="*" />
 		</fileset>
@@ -1228,24 +1231,47 @@
 
 	<target name="generate-matrix" depends="download-ontologies,normalize-phenoscape-ext,checkout-nexml,nexml-to-owl">
 		<mkdir dir="${staging}/analyses/matrix" />
-		<java classname="org.phenoscape.owl.MergeOntologies" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
-			<arg value="${staging}/analyses/matrix/alldata.owl" />
-			<arg value="${kb}" />
-			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
-			<sysproperty key="java.library.path" value="lib" />
-			<sysproperty key="elk.reasoner.number_of_workers" value="${parallel_size}" />
-			<sysproperty key="entityExpansionLimit" value="9999999" />
-			<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
-		</java>
-		<java classname="org.phenoscape.owl.MatrixGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
-			<arg value="${staging}/analyses/matrix/alldata.owl" />
-			<arg value="${staging}/analyses/matrix/state_groups.owl" />
-			<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
-			<sysproperty key="java.library.path" value="lib" />
-			<sysproperty key="entityExpansionLimit" value="9999999" />
-			<sysproperty key="elk.reasoner.number_of_workers" value="${parallel_size}" />
-			<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
-		</java>
+		<for param="file" parallel="true" threadCount="5">
+			<path>
+				<fileset dir="${nexml}/completed-phenex-files">
+					<include name="**/*.xml" />
+					<exclude name="**/catalog-v001.xml" />
+				</fileset>
+				<fileset dir="${nexml}/fin_limb-incomplete-files">
+					<include name="**/*.xml" />
+					<exclude name="**/catalog-v001.xml" />
+				</fileset>
+			</path>
+			<sequential>
+				<java classname="org.phenoscape.owl.PhenexToOWL" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
+					<arg value="@{file}" />
+					<arg value="@{file}.owl" />
+				</java>
+				<java classname="org.phenoscape.owl.PropertyNormalizer" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
+					<arg value="@{file}.owl" />
+					<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+				</java>
+				<java classname="org.phenoscape.owl.MaterializeInferences" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
+					<arg value="@{file}.owl" />
+					<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+					<!-- <sysproperty key="org.phenoscape.owl.reasoner" value="trowl" /> -->
+					<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
+					<sysproperty key="elk.reasoner.number_of_workers" value="${parallel_size}" />
+					<sysproperty key="entityExpansionLimit" value="9999999" />
+				</java>
+				<java classname="org.phenoscape.owl.MatrixGenerator" classpathref="jarsclasspath" fork="true" maxmemory="${maxmem}" failonerror="true">
+					<arg value="@{file}.owl" />
+					<!-- unfinished -->
+					<arg value="${staging}/analyses/matrix/state_groups.owl" />
+					<sysproperty key="org.phenoscape.owl.files" value="${kb}" />
+					<sysproperty key="java.library.path" value="lib" />
+					<sysproperty key="entityExpansionLimit" value="9999999" />
+					<sysproperty key="elk.reasoner.number_of_workers" value="${parallel_size}" />
+					<sysproperty key="org.phenoscape.owl.reasoner" value="elk" />
+				</java>
+				<copy file="@{file}.owl" todir="${kb}" preservelastmodified="true" />
+			</sequential>
+		</for>
 	</target>
 
 </project>
