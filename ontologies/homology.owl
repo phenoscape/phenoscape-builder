@@ -1,0 +1,1255 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://purl.obolibrary.org/obo/uberon/homology.owl#"
+     xml:base="http://purl.obolibrary.org/obo/uberon/homology.owl"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
+    <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/uberon/homology.owl">
+        <dc:description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Homology Assertions</dc:description>
+        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/eco.owl"/>
+        <owl:imports rdf:resource="http://purl.obolibrary.org/obo/uberon/ext.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/elements/1.1/source -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/elements/1.1/source"/>
+    
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#evidence -->
+
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#evidence"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/RO_0002158 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/RO_0002158"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ECO_0000033 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ECO_0000033"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ECO_0000034 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ECO_0000034"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ECO_0000060 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ECO_0000060"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ECO_0000067 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ECO_0000067"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ECO_0000071 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ECO_0000071"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/ECO_0000075 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/ECO_0000075"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_0000151 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_0000151">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0002102"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/96e4f3a6-89a0-47ed-a006-d51a6b814332"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0000151"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0002102"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_0000152 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_0000152">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0002103"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/d8b2e782-22c1-499b-9f9d-cdfbca19dd0d"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0000152"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0002103"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_0001463 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_0001463">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0005880"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0001463"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0001463"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/f11d0c53-379e-4e4c-9e26-d5adde528c6f"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0001463"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0001463"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/951e95ac-e44a-4de6-a006-e3490a7b6620"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0001463"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0005880"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/8b22763c-b00d-47aa-a69e-86b7c0069d21"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0001463"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0001463"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_0002102 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_0002102">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0000151"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/96e4f3a6-89a0-47ed-a006-d51a6b814332"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0002102"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0000151"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_0002103 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_0002103">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0000152"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/d8b2e782-22c1-499b-9f9d-cdfbca19dd0d"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0002103"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0000152"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_0002389 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_0002389">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0011981"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0011982"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/5bc78ccf-5455-4b9e-b523-7368d775ffbd"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0002389"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0011982"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/f10e0e14-4dfa-45d9-9bde-ffae80d4affd"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0002389"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0011981"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_0002531 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_0002531">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0004347"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/32e981a1-da80-431c-a83a-b5ef87c5b556"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0002531"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0004347"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_0002542 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_0002542">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_4000172"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/dd929cc9-db23-4884-ad10-c906dd0c9472"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0002542"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_4000172"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_0002544 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_0002544">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_2000271"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/af1fa50c-95e1-4ff0-b463-d031b829fe74"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0002544"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_2000271"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_0003631 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_0003631">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012136"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/e3ee5d36-ac7f-4a13-9aaa-736243c0a43e"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0003631"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012136"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_0003635 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_0003635">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0011984"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/c96fdbc0-35c8-44ed-93a9-988f84254d31"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0003635"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0011984"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_0004347 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_0004347">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0002531"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/32e981a1-da80-431c-a83a-b5ef87c5b556"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0004347"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0002531"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_0005880 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_0005880">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0001463"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/951e95ac-e44a-4de6-a006-e3490a7b6620"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0005880"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0001463"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_0011583 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_0011583">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_4400000"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/3bbcce38-c324-4cb4-a11a-08df33a34460"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0011583"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_4400000"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_0011981 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_0011981">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0002389"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/f10e0e14-4dfa-45d9-9bde-ffae80d4affd"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0011981"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0002389"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_0011982 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_0011982">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0002389"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/5bc78ccf-5455-4b9e-b523-7368d775ffbd"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0011982"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0002389"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_0011984 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_0011984">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0003635"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/c96fdbc0-35c8-44ed-93a9-988f84254d31"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0011984"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0003635"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_0012136 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_0012136">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0003631"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/e3ee5d36-ac7f-4a13-9aaa-736243c0a43e"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012136"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0003631"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_0012150 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_0012150">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_1500006"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_1500006"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_1500006"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_1500006"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_1500006"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_1500006"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_1500006"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/5532461d-a59a-4c63-af6c-9d2cb5a7bd53"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012150"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_1500006"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/762c0e8b-5cab-4706-a138-1bc165fad878"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012150"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_1500006"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/3c8a80f2-e1de-419e-b6c4-52d69ef908d6"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012150"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_1500006"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/01ab7dd6-0193-4d69-ba47-fe08eca0ac7f"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012150"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_1500006"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/591a4d63-f993-4a7d-afc0-797594e979af"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012150"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_1500006"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/ec1a898c-72d8-4d48-8ed6-c6acedf165a9"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012150"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_1500006"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/dc93819b-6019-44ee-a7df-b4b07955c17b"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012150"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_1500006"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_1500006 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_1500006">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012150"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012150"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012150"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012150"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012150"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012150"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012150"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/01ab7dd6-0193-4d69-ba47-fe08eca0ac7f"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_1500006"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012150"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/3c8a80f2-e1de-419e-b6c4-52d69ef908d6"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_1500006"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012150"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/dc93819b-6019-44ee-a7df-b4b07955c17b"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_1500006"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012150"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/5532461d-a59a-4c63-af6c-9d2cb5a7bd53"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_1500006"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012150"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/762c0e8b-5cab-4706-a138-1bc165fad878"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_1500006"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012150"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/ec1a898c-72d8-4d48-8ed6-c6acedf165a9"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_1500006"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012150"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/591a4d63-f993-4a7d-afc0-797594e979af"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_1500006"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0012150"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_2000089 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_2000089">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_4400001"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_4400001"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/ec253dc0-1cac-4f2e-8985-ff0319b5cad5"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_2000089"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_4400001"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/40f48ca6-0f4d-4a70-ab87-69d118702e02"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_2000089"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_4400001"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_2000271 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_2000271">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0002544"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/af1fa50c-95e1-4ff0-b463-d031b829fe74"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_2000271"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0002544"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_4000172 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_4000172">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_4400007"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0002542"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/dd929cc9-db23-4884-ad10-c906dd0c9472"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_4000172"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0002542"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/0bc4ce95-90bb-40c3-ad12-a37d7dcf33f1"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_4000172"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_4400007"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_4400000 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_4400000">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0011583"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/3bbcce38-c324-4cb4-a11a-08df33a34460"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_4400000"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_0011583"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_4400001 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_4400001">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_2000089"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_2000089"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/40f48ca6-0f4d-4a70-ab87-69d118702e02"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_4400001"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_2000089"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/ec253dc0-1cac-4f2e-8985-ff0319b5cad5"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_4400001"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_2000089"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/UBERON_4400007 -->
+
+    <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_4400007">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_4000172"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    <owl:Axiom>
+        <oboInOwl:evidence rdf:resource="http://example.org/0bc4ce95-90bb-40c3-ad12-a37d7dcf33f1"/>
+        <owl:annotatedSource rdf:resource="http://purl.obolibrary.org/obo/UBERON_4400007"/>
+        <owl:annotatedProperty rdf:resource="http://www.w3.org/2000/01/rdf-schema#subClassOf"/>
+        <owl:annotatedTarget>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://purl.obolibrary.org/obo/RO_0002158"/>
+                <owl:someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/UBERON_4000172"/>
+            </owl:Restriction>
+        </owl:annotatedTarget>
+    </owl:Axiom>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://example.org/01ab7dd6-0193-4d69-ba47-fe08eca0ac7f -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/01ab7dd6-0193-4d69-ba47-fe08eca0ac7f">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000067"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Johanson et al., 2007</dc:source>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/0bc4ce95-90bb-40c3-ad12-a37d7dcf33f1 -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/0bc4ce95-90bb-40c3-ad12-a37d7dcf33f1">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000071"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Goodrich, 1904</dc:source>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/32e981a1-da80-431c-a83a-b5ef87c5b556 -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/32e981a1-da80-431c-a83a-b5ef87c5b556">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000034"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">many authors...</dc:source>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/3bbcce38-c324-4cb4-a11a-08df33a34460 -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/3bbcce38-c324-4cb4-a11a-08df33a34460">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000071"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Coates, 1994</dc:source>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/3c8a80f2-e1de-419e-b6c4-52d69ef908d6 -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/3c8a80f2-e1de-419e-b6c4-52d69ef908d6">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000034"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Coates, 1994</dc:source>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/40f48ca6-0f4d-4a70-ab87-69d118702e02 -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/40f48ca6-0f4d-4a70-ab87-69d118702e02">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000033"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zhang et al., 2010</dc:source>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/5532461d-a59a-4c63-af6c-9d2cb5a7bd53 -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/5532461d-a59a-4c63-af6c-9d2cb5a7bd53">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000075"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Johanson et al., 2007</dc:source>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/591a4d63-f993-4a7d-afc0-797594e979af -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/591a4d63-f993-4a7d-afc0-797594e979af">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000060"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Friedman et al., 2007</dc:source>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/5bc78ccf-5455-4b9e-b523-7368d775ffbd -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/5bc78ccf-5455-4b9e-b523-7368d775ffbd">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000071"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Coates and Clack, 1990</dc:source>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/762c0e8b-5cab-4706-a138-1bc165fad878 -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/762c0e8b-5cab-4706-a138-1bc165fad878">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000071"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Friedman et al., 2007</dc:source>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/8b22763c-b00d-47aa-a69e-86b7c0069d21 -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/8b22763c-b00d-47aa-a69e-86b7c0069d21">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000075"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tamura et al., 2011</dc:source>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/951e95ac-e44a-4de6-a006-e3490a7b6620 -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/951e95ac-e44a-4de6-a006-e3490a7b6620">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000067"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Galis et al., 2001</dc:source>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/96e4f3a6-89a0-47ed-a006-d51a6b814332 -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/96e4f3a6-89a0-47ed-a006-d51a6b814332">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000034"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Goodrich, 1930</dc:source>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/af1fa50c-95e1-4ff0-b463-d031b829fe74 -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/af1fa50c-95e1-4ff0-b463-d031b829fe74">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000075"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Johanson et al., 2007</dc:source>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/c96fdbc0-35c8-44ed-93a9-988f84254d31 -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/c96fdbc0-35c8-44ed-93a9-988f84254d31">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000067"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Galis et al., 2001</dc:source>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/d8b2e782-22c1-499b-9f9d-cdfbca19dd0d -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/d8b2e782-22c1-499b-9f9d-cdfbca19dd0d">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000034"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Goodrich, 1930</dc:source>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dc93819b-6019-44ee-a7df-b4b07955c17b -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dc93819b-6019-44ee-a7df-b4b07955c17b">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000067"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Friedman et al., 2007</dc:source>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/dd929cc9-db23-4884-ad10-c906dd0c9472 -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/dd929cc9-db23-4884-ad10-c906dd0c9472">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000071"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Goodrich, 1904</dc:source>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/e3ee5d36-ac7f-4a13-9aaa-736243c0a43e -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/e3ee5d36-ac7f-4a13-9aaa-736243c0a43e">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000067"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Galis et al., 2001</dc:source>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/ec1a898c-72d8-4d48-8ed6-c6acedf165a9 -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/ec1a898c-72d8-4d48-8ed6-c6acedf165a9">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000075"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Davis et al., 2007</dc:source>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/ec253dc0-1cac-4f2e-8985-ff0319b5cad5 -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/ec253dc0-1cac-4f2e-8985-ff0319b5cad5">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000071"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Goodrich, 1904</dc:source>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/f10e0e14-4dfa-45d9-9bde-ffae80d4affd -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/f10e0e14-4dfa-45d9-9bde-ffae80d4affd">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000071"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Coates and Clack, 1990</dc:source>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://example.org/f11d0c53-379e-4e4c-9e26-d5adde528c6f -->
+
+    <owl:NamedIndividual rdf:about="http://example.org/f11d0c53-379e-4e4c-9e26-d5adde528c6f">
+        <rdf:type rdf:resource="http://purl.obolibrary.org/obo/ECO_0000075"/>
+        <dc:source rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vargas and Fallon, 2005</dc:source>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version [Not Released]) http://owlapi.sourceforge.net -->
+

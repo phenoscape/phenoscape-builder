@@ -1,25 +1,13 @@
 <?xml version="1.0"?>
-
-
-<!DOCTYPE rdf:RDF [
-    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
-    <!ENTITY obo "http://purl.obolibrary.org/obo/" >
-    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
-    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
-    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
-    <!ENTITY oboInOwl "http://www.geneontology.org/formats/oboInOwl#" >
-]>
-
-
-<rdf:RDF xmlns="&obo;ro.owl#"
-     xml:base="&obo;ro.owl"
+<rdf:RDF xmlns="http://purl.obolibrary.org/obo/ro.owl#"
+     xml:base="http://purl.obolibrary.org/obo/ro.owl"
      xmlns:obo="http://purl.obolibrary.org/obo/"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
-    <owl:Ontology rdf:about="&obo;ro.owl"/>
+    <owl:Ontology rdf:about="http://purl.obolibrary.org/obo/ro.owl"/>
     
 
 
@@ -31,8 +19,8 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    <owl:AnnotationProperty rdf:about="&obo;RO_0002161">
-        <rdfs:label rdf:datatype="&xsd;string">never in taxon</rdfs:label>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/RO_0002161">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">never in taxon</rdfs:label>
         <obo:IAO_0000119>PMID:17921072</obo:IAO_0000119>
         <obo:IAO_0000112>tooth SubClassOf &apos;never in taxon&apos; value &apos;Aves&apos;</obo:IAO_0000112>
         <obo:IAO_0000425>?X DisjointWith RO_0002162 some ?Y </obo:IAO_0000425>
@@ -40,24 +28,24 @@
         <obo:IAO_0000119 xml:lang="en">PMID:20973947</obo:IAO_0000119>
         <obo:IAO_0000115>x never in taxon T if and only if T is a class, and x does not instantiate the class expression &quot;in taxon some T&quot;. Note that this is a shortcut relation, and should be used as a hasValue restriction in OWL.</obo:IAO_0000115>
     </owl:AnnotationProperty>
-    <owl:AnnotationProperty rdf:about="&obo;IAO_id"/>
-    <owl:AnnotationProperty rdf:about="&oboInOwl;shorthand">
-        <rdfs:label rdf:datatype="&xsd;string">shorthand</rdfs:label>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_id"/>
+    <owl:AnnotationProperty rdf:about="http://www.geneontology.org/formats/oboInOwl#shorthand">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">shorthand</rdfs:label>
     </owl:AnnotationProperty>
-    <owl:AnnotationProperty rdf:about="&rdfs;label"/>
-    <owl:AnnotationProperty rdf:about="&obo;IAO_0000424"/>
-    <owl:AnnotationProperty rdf:about="&obo;IAO_0000115"/>
-    <owl:AnnotationProperty rdf:about="&obo;IAO_0000412">
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2000/01/rdf-schema#label"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000115"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000424"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000114"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000412">
         <rdfs:label xml:lang="en">imported from</rdfs:label>
     </owl:AnnotationProperty>
-    <owl:AnnotationProperty rdf:about="&obo;IAO_0000114"/>
-    <owl:AnnotationProperty rdf:about="&obo;IAO_0000119"/>
-    <owl:AnnotationProperty rdf:about="&obo;IAO_0000426"/>
-    <owl:AnnotationProperty rdf:about="&obo;IAO_0000117"/>
-    <owl:AnnotationProperty rdf:about="&obo;IAO_0000425"/>
-    <owl:AnnotationProperty rdf:about="&obo;IAO_0000118"/>
-    <owl:AnnotationProperty rdf:about="&obo;IAO_0000111"/>
-    <owl:AnnotationProperty rdf:about="&obo;IAO_0000112"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000119"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000117"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000426"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000118"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000425"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000111"/>
+    <owl:AnnotationProperty rdf:about="http://purl.obolibrary.org/obo/IAO_0000112"/>
     
 
 
@@ -83,47 +71,60 @@
     
 
 
+    <!-- http://example.org/php -->
+
+    <owl:ObjectProperty rdf:about="http://example.org/php">
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">part of something that is homologous to some part of</rdfs:label>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000050"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/RO_0002158"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000050"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://purl.obolibrary.org/obo/BFO_0000050 -->
 
-    <owl:ObjectProperty rdf:about="&obo;BFO_0000050">
-        <rdf:type rdf:resource="&owl;ReflexiveProperty"/>
-        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000050">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ReflexiveProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
         <rdfs:label xml:lang="en">part of</rdfs:label>
-        <oboInOwl:shorthand rdf:datatype="&xsd;string">part_of</oboInOwl:shorthand>
-        <obo:IAO_0000412 rdf:resource="&obo;BFO"/>
-        <owl:inverseOf rdf:resource="&obo;BFO_0000051"/>
+        <oboInOwl:shorthand rdf:datatype="http://www.w3.org/2001/XMLSchema#string">part_of</oboInOwl:shorthand>
+        <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/BFO"/>
+        <owl:inverseOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.obolibrary.org/obo/BFO_0000051 -->
 
-    <owl:ObjectProperty rdf:about="&obo;BFO_0000051">
-        <rdf:type rdf:resource="&owl;ReflexiveProperty"/>
-        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000051">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ReflexiveProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
         <rdfs:label xml:lang="en">has part</rdfs:label>
-        <oboInOwl:shorthand rdf:datatype="&xsd;string">has_part</oboInOwl:shorthand>
-        <obo:IAO_0000412 rdf:resource="&obo;BFO"/>
+        <oboInOwl:shorthand rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has_part</oboInOwl:shorthand>
+        <obo:IAO_0000412 rdf:resource="http://purl.obolibrary.org/obo/BFO"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.obolibrary.org/obo/BFO_0000052 -->
 
-    <owl:ObjectProperty rdf:about="&obo;BFO_0000052">
-        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000052">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:label xml:lang="en">inheres in</rdfs:label>
-        <oboInOwl:shorthand rdf:datatype="&xsd;string">inheres_in</oboInOwl:shorthand>
+        <oboInOwl:shorthand rdf:datatype="http://www.w3.org/2001/XMLSchema#string">inheres_in</oboInOwl:shorthand>
         <obo:IAO_0000118 xml:lang="en">inheres_in</obo:IAO_0000118>
-        <owl:inverseOf rdf:resource="&obo;BFO_0000053"/>
-        <rdfs:subPropertyOf rdf:resource="&obo;RO_0002314"/>
+        <owl:inverseOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000053"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/RO_0002314"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.obolibrary.org/obo/BFO_0000053 -->
 
-    <owl:ObjectProperty rdf:about="&obo;BFO_0000053">
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000053">
         <rdfs:label xml:lang="en">is bearer of</rdfs:label>
         <obo:IAO_0000118 xml:lang="en">bearer of</obo:IAO_0000118>
         <obo:IAO_0000118 xml:lang="en">bearer_of</obo:IAO_0000118>
@@ -133,9 +134,9 @@
 
     <!-- http://purl.obolibrary.org/obo/BFO_0000056 -->
 
-    <owl:ObjectProperty rdf:about="&obo;BFO_0000056">
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/BFO_0000056">
         <rdfs:label xml:lang="en">participates in</rdfs:label>
-        <oboInOwl:shorthand rdf:datatype="&xsd;string">participates_in</oboInOwl:shorthand>
+        <oboInOwl:shorthand rdf:datatype="http://www.w3.org/2001/XMLSchema#string">participates_in</oboInOwl:shorthand>
         <obo:IAO_0000118 xml:lang="en">participates_in</obo:IAO_0000118>
     </owl:ObjectProperty>
     
@@ -143,30 +144,40 @@
 
     <!-- http://purl.obolibrary.org/obo/RO_0002150 -->
 
-    <owl:ObjectProperty rdf:about="&obo;RO_0002150">
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/RO_0002150">
         <rdfs:label xml:lang="en">connected to</rdfs:label>
-        <obo:IAO_0000117 rdf:datatype="&xsd;string">David Osumi-Sutherland</obo:IAO_0000117>
-        <obo:IAO_0000115 rdf:datatype="&xsd;string">X connected_to Y if and only if X and Y share a fiat boundary.</obo:IAO_0000115>
-        <obo:IAO_0000114 rdf:resource="&obo;IAO_0000125"/>
+        <obo:IAO_0000117 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">David Osumi-Sutherland</obo:IAO_0000117>
+        <obo:IAO_0000115 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">X connected_to Y if and only if X and Y share a fiat boundary.</obo:IAO_0000115>
+        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/RO_0002158 -->
+
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/RO_0002158">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ReflexiveProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">homologous to</rdfs:label>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.obolibrary.org/obo/RO_0002180 -->
 
-    <owl:ObjectProperty rdf:about="&obo;RO_0002180">
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/RO_0002180">
         <rdfs:label xml:lang="en">has component</rdfs:label>
         <rdfs:comment xml:lang="en">For use in recording has_part with a cardinality constraint.</rdfs:comment>
-        <rdfs:subPropertyOf rdf:resource="&obo;BFO_0000051"/>
-        <obo:IAO_0000114 rdf:resource="&obo;IAO_0000125"/>
+        <rdfs:subPropertyOf rdf:resource="http://purl.obolibrary.org/obo/BFO_0000051"/>
+        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.obolibrary.org/obo/RO_0002202 -->
 
-    <owl:ObjectProperty rdf:about="&obo;RO_0002202">
-        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/RO_0002202">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
         <rdfs:label xml:lang="en">develops from</rdfs:label>
         <obo:IAO_0000117 xml:lang="en">Chris Mungall</obo:IAO_0000117>
         <obo:IAO_0000117>Melissa Haendel</obo:IAO_0000117>
@@ -174,18 +185,18 @@
         <rdfs:comment>This is the transitive form of the develops from relation</rdfs:comment>
         <obo:IAO_0000117 xml:lang="en">Terry Meehan</obo:IAO_0000117>
         <obo:IAO_0000115>x develops from y if and only if either (a) x directly develops from y or (b) there exists some z such that x directly develops from z and z develops from y</obo:IAO_0000115>
-        <obo:IAO_0000114 rdf:resource="&obo;IAO_0000125"/>
+        <obo:IAO_0000114 rdf:resource="http://purl.obolibrary.org/obo/IAO_0000125"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://purl.obolibrary.org/obo/RO_0002314 -->
 
-    <owl:ObjectProperty rdf:about="&obo;RO_0002314">
+    <owl:ObjectProperty rdf:about="http://purl.obolibrary.org/obo/RO_0002314">
         <rdfs:label>inheres in part of</rdfs:label>
         <owl:propertyChainAxiom rdf:parseType="Collection">
-            <rdf:Description rdf:about="&obo;BFO_0000052"/>
-            <rdf:Description rdf:about="&obo;BFO_0000050"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000052"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000050"/>
         </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
@@ -196,15 +207,15 @@
     <owl:ObjectProperty rdf:about="http://vocab.phenoscape.org/involves">
         <owl:propertyChainAxiom rdf:parseType="Collection">
             <rdf:Description rdf:about="http://vocab.phenoscape.org/involves"/>
-            <rdf:Description rdf:about="&obo;BFO_0000050"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/RO_0002314"/>
         </owl:propertyChainAxiom>
         <owl:propertyChainAxiom rdf:parseType="Collection">
             <rdf:Description rdf:about="http://vocab.phenoscape.org/involves"/>
-            <rdf:Description rdf:about="&obo;RO_0002314"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000052"/>
         </owl:propertyChainAxiom>
         <owl:propertyChainAxiom rdf:parseType="Collection">
             <rdf:Description rdf:about="http://vocab.phenoscape.org/involves"/>
-            <rdf:Description rdf:about="&obo;BFO_0000052"/>
+            <rdf:Description rdf:about="http://purl.obolibrary.org/obo/BFO_0000050"/>
         </owl:propertyChainAxiom>
     </owl:ObjectProperty>
     
@@ -213,15 +224,15 @@
     <!-- http://vocab.phenoscape.org/subclade_of -->
 
     <owl:ObjectProperty rdf:about="http://vocab.phenoscape.org/subclade_of">
-        <rdf:type rdf:resource="&owl;ReflexiveProperty"/>
-        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ReflexiveProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
     </owl:ObjectProperty>
     
 
 
     <!-- http://www.w3.org/2002/07/owl#topObjectProperty -->
 
-    <owl:ObjectProperty rdf:about="&owl;topObjectProperty"/>
+    <owl:ObjectProperty rdf:about="http://www.w3.org/2002/07/owl#topObjectProperty"/>
 </rdf:RDF>
 
 
